@@ -1,0 +1,317 @@
+<div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="content">
+    <!-- uiView:  -->
+    <div ui-view="" class="ng-scope">
+    <section class="custom_head">
+       <div class="container-fluid">
+          <div class="row">
+             <div class="col-md-6">
+                <ul>
+                   <li style="padding-left: 10px;">
+                      Show Off Duty Drivers &nbsp;&nbsp; 
+                      <label class="switch">
+                      <input type="checkbox">
+                      <span class="slider"></span>
+                      </label>
+                   </li>
+                   <li>
+                      <select>
+                         <option>Driver Status</option>
+                      </select>
+                   </li>
+                   <li>
+                      <select>
+                         <option>Time Slot</option>
+                      </select>
+                   </li>
+                </ul>
+             </div>
+             <div class="col-md-6 right_cont">
+                <ul>
+                   <li>
+                      <i class="fa fa-refresh"></i>
+                   </li>
+                </ul>
+             </div>
+          </div>
+       </div>
+    </section>
+    <section class="custom_head">
+    <div class="container-fluid">
+       <div class="row">
+          <div class="col-md-9">
+             <div class="card">
+                <div class="card-content">
+                   <div class="row">
+                      <div class="col-md-12">
+                         <div id="map"></div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-4 dri_sec">
+                   <div class="card">
+                      <div class="card-header">
+                         <div class="two_col">
+                            <h4 class="card-title">Order</h4>
+                         </div>
+                         <div class="two_col1">
+                            <form class="search-form">
+                               <div class="input-group search-group">
+                                  <span><img src="assets/img/search_icon.svg"></span>
+                                  <input type="text" class="form-control search-control">
+                               </div>
+                               <!-- /.input-group -->
+                            </form>
+                         </div>
+                         <div class="ord_tab">
+                            <table class="table table-bordered table-striped table_datatable" id="customerTable">
+                               <tbody>
+                                  <tr *ngFor="let item of orderList;let i = index">
+                                     <td><span class="red_color">{{item.orderIDs}}</span><br>
+                                        <span *ngFor="let store of item.storeList" class="light_color">{{store.storeName}},</span><br>
+                                        <span class="ligi_li_color">Delivery : {{item.fromTime}} - {{item.toTime}}</span>
+                                     </td>
+                                     <td>
+                                        <div class="mycheckbox">
+                                           <input type="checkbox" name="{{item.orderIDs}}" id="{{item.orderIDs}}" [checked]="getSelection(item)" (change)="changeHandler(item, $event)"/>
+                                           <label for="{{item.orderIDs}}"></label>
+                                        </div>
+                                     </td>
+                                  </tr>
+                                  <!-- <tr>
+                                     <td><span class="red_color">#Order_ID</span><br>
+                                        <span class="light_color">Meat Shop, Super Market</span><br>
+                                        <span class="ligi_li_color">Delivery : 02:00PM - 05:00PM</span>
+                                     </td>
+                                     <td>
+                                        <div class="mycheckbox">
+                                           <input type="checkbox" name="useful" id="useful" />
+                                           <label for="useful"></label>
+                                        </div>
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                     <td><span class="red_color">#Order_ID</span><br>
+                                        <span class="light_color">Meat Shop, Super Market</span><br>
+                                        <span class="ligi_li_color">Delivery : 02:00PM - 05:00PM</span>
+                                     </td>
+                                     <td>
+                                        <div class="mycheckbox">
+                                           <input type="checkbox" name="useful" id="useful" />
+                                           <label for="useful"></label>
+                                        </div>
+                                     </td>
+                                  </tr> -->
+                               </tbody>
+                            </table>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+                <div class="col-md-4 dri_sec" *ngIf = "isShowDriver">
+                   <div class="card">
+                      <div class="card-header">
+                         <div class="two_col">
+                            <h4 class="card-title">Driver</h4>
+                         </div>
+                         <div class="two_col1">
+                            <form class="search-form">
+                               <div class="input-group search-group">
+                                  <span><img src="assets/img/search_icon.svg"></span>
+                                  <input type="text" class="form-control search-control">
+                               </div>
+                               <!-- /.input-group -->
+                            </form>
+                         </div>
+                         <div class="ord_tab">
+
+                           
+                            <table class="table table-bordered table-striped table_datatable" id="customerTable">
+                               <tbody>
+                                  <tr *ngFor="let item of driverList;let i = index">
+                                     <td style="width:30%"><img src="{{item.profilePic}}"></td>
+                                     <td style="width:40%"><span>{{item.firstName}}</span><br>
+                                        <span class="red_color">{{item.drId}}</span><br>
+                                        <span class="light_color">Orders : 0</span>
+                                     </td>
+                                     <td style="width:30%;text-align: right;">
+
+                                       <!-- <label><b>Gender</b></label> <br> -->
+                                       <div class="form-check-inline">
+                                          <label class="form-check-label" for="{{item.id}}">
+                                             <input type="radio" name="optradio" class="form-check-input" id="{{item.id}}" (click)="selectDriver(item)"   value="{{item.id}}">
+                                          </label>
+                                       </div>
+                                        <!-- <div class="mycheckbox">
+                                           <input type="checkbox" name="useful" id="useful" />
+                                           <label for="useful"></label>
+                                        </div> -->
+                                     </td>
+                                  </tr>
+                                  <!-- <tr>
+                                     <td style="width:30%"><img src="assets/img/driver2.png"></td>
+                                     <td style="width:40%"><span>Driver B</span><br>
+                                        <span class="red_color">#Dr0024</span><br>
+                                        <span class="light_color">Orders : 3</span>
+                                     </td>
+                                     <td style="width:30%;text-align: right;">
+                                        <div class="mycheckbox">
+                                           <input type="checkbox" name="useful" id="useful" checked />
+                                           <label for="useful"></label>
+                                        </div>
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                     <td style="width:30%"><img src="assets/img/driver3.png"></td>
+                                     <td style="width:40%"><span>Driver C</span><br>
+                                        <span class="red_color">#Dr0038</span><br>
+                                        <span class="light_color">Orders : 1</span>
+                                     </td>
+                                     <td style="width:30%;text-align: right;">
+                                        <div class="mycheckbox">
+                                           <input type="checkbox" name="useful" id="useful" />
+                                           <label for="useful"></label>
+                                        </div>
+                                     </td>
+                                  </tr> -->
+                               </tbody>
+                            </table>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+
+                <div class="col-md-4 dri_sec" *ngIf = "isShowStore">
+                   <div class="card">
+                      <div class="card-header">
+                         <div class="two_col">
+                            <h4 class="card-title">Stores</h4>
+                         </div>
+                         <div class="two_col1">
+                            <form class="search-form">
+                               <div class="input-group search-group">
+                                  <span><img src="assets/img/search_icon.svg"></span>
+                                  <input type="text" class="form-control search-control">
+                               </div>
+                               <!-- /.input-group -->
+                            </form>
+                         </div>
+                         <div class="ord_tab">
+                            <table class="table table-bordered table-striped table_datatable" id="customerTable">
+                               <tbody>
+                                  <tr *ngFor="let item of storeList;let i = index" >
+                                     <td style="width:30%"><img src="{{item.storeImage}}"></td>
+                                     <td style="width:40%"><span>{{item.storeName}}</span><br>
+                                        <span class="red_color">{{item.storeID}}</span><br>
+                                        <span class="light_color">Orders : 0</span>
+                                     </td>
+                                     <!-- <td style="width:30%;text-align: right;">
+                                        <div class="mycheckbox">
+                                           <input type="checkbox" name="useful" id="useful"/>
+                                           <label for="useful"></label>
+                                        </div>
+                                     </td> -->
+                                  </tr>
+                                  <!-- <tr>
+                                     <td style="width:30%"><img src="assets/img/store2.png"></td>
+                                     <td style="width:40%"><span>Store B</span><br>
+                                        <span class="red_color">#St0026</span><br>
+                                        <span class="light_color">Orders : 26</span>
+                                     </td>
+                                     <td style="width:30%;text-align: right;">
+                                        <div class="mycheckbox">
+                                           <input type="checkbox" name="useful" id="useful" checked />
+                                           <label for="useful"></label>
+                                        </div>
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                     <td style="width:30%"><img src="assets/img/store3.png"></td>
+                                     <td style="width:40%"><span>Store C</span><br>
+                                        <span class="red_color">#St0026</span><br>
+                                        <span class="light_color">Orders : 17</span>
+                                     </td>
+                                     <td style="width:30%;text-align: right;">
+                                        <div class="mycheckbox">
+                                           <input type="checkbox" name="useful" id="useful" checked />
+                                           <label for="useful"></label>
+                                        </div>
+                                     </td>
+                                  </tr> -->
+                               </tbody>
+                            </table>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="card">
+                <div class="make_sec">
+                   <div class="material-datatables">
+                      <table class="table table-bordered table-striped table_datatable" id="customerTable">
+                         <tbody>
+                            <tr>
+                               <td><img src="{{driverImage}}"></td>
+                               <td><span>{{driverName}}</span><br>
+                                  <span class="red_color">{{driverID}}</span><br>
+                                  <span class="light_color">Orders : 0</span>
+                               </td>
+                               <td style="vertical-align: middle;"><button (click)="driverAssign()" class="update_btn">Update</button></td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+                <div class="make_order" *ngFor="let item of selection;let i = index">
+                   <p class="red_color">{{item.orderIDs}}</p>
+                   <span *ngFor="let store of item.storeList" class="light_color">{{store.storeName}},</span><br>
+                   <!-- <p class="light_color">Meat Shop, Super Market</p> -->
+                   <p class="ligi_li_color">Delivery : {{item.fromTime}} - {{item.toTime}}</p>
+                </div>
+                <!-- <div class="make_order">
+                   <p class="red_color">#Order_ID</p>
+                   <p class="light_color">Meat Shop, Super Market</p>
+                   <p class="ligi_li_color">Delivery : 02:00PM - 05:00PM</p>
+                </div> -->
+                <p class="assing_route">Assignment Route</p>
+                <div class="ass_sss">
+
+                  <ngx-sortable [items]="distance" (listSorted)="listOrderChanged($event)">
+                     <ng-template let-item>
+                         <div *ngIf = "item.storeName" class="sortable-list-item">
+                             {{item.storeName}}
+                         </div>
+                         <div *ngIf = "item.firstName" class="sortable-list-item">
+                           {{item.firstName}}
+                       </div>
+                     </ng-template>
+                 </ngx-sortable>
+
+                   <!-- <table class="table table-bordered table-striped table_datatable" id="customerTable">
+                      <tbody>
+                         <tr *ngFor="let item of distance;let i = index" >
+                            <td>
+                               <div class="assign_bord">
+                                  <span *ngIf = "item.storeName" >{{item.storeName}}</span> <span *ngIf = "item.firstName" >{{item.firstName}}</span> <br>
+                                  <span> {{ item.distance | number : '1.1-1'}} km from location</span>
+                               </div>
+                            </td>
+                            <td><img src="assets/img/delete_icon.svg"></td>
+                            <td><img src="assets/img/menu_icon.svg"></td>
+                         </tr>
+                         
+                      </tbody>
+                   </table> -->
+                </div>
+                <br>
+             </div>
+          </div>
+       </div>
+    </div>

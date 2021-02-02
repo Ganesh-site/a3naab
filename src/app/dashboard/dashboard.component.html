@@ -1,0 +1,639 @@
+<div class="main-panel ps-theme-default">
+		<app-navbar></app-navbar>
+		<div class="content">
+		<!-- uiView:  --><div ui-view="" class="ng-scope"><div class="container-fluid ng-scope">
+		<div class="row dash_page">
+		<div class="col-md-3 delive_col">
+		<div class="card card-stats">
+		<div class="card-content">
+		<p class="category text-center">Delivered Orders &nbsp;&nbsp;<strong>23</strong></p>
+		<h3 class="card-title"></h3>
+		</div>
+		</div>
+		</div>
+		<div class="col-md-3 delive_col">
+		<div class="card card-stats">
+		<div class="card-content">
+		<p class="category text-center">Pending Orders &nbsp;&nbsp;<strong>15</strong></p>
+		<h3 class="card-title"></h3>
+		</div>
+		</div>
+		</div>
+		<div class="col-md-3 delive_col">
+		<div class="card card-stats">
+		<div class="card-content">
+		<p class="category text-center">Assigned Orders &nbsp;&nbsp;<strong>5</strong></p>
+		<h3 class="card-title"></h3>
+		</div>
+		</div>
+		</div>
+		<div class="col-md-3 delive_col">
+		<div class="card card-stats">
+		<div class="card-content">
+		<p class="category text-center">Cancelled Orders &nbsp;&nbsp;<strong> 1</strong></p>
+		<h3 class="card-title"></h3>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		
+		<section class="user_sec ng-scope">
+		<div class="container-fluid">
+		<div class="col-md-8 sec_col">
+		<div class="col-md-4 live_col">
+		<div class="card">
+		<div class="card-header">
+		<h5 class="card-title">iOS <a>852 Live Users</a></h5>
+		<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+		</div>
+		<div class="card-content">
+		<p class="category">Total Downloads <span> 45</span></p>
+		<p class="update">Daily Update <span>-34</span></p>
+		<p class="category">Total Registered Users <span> 1267</span></p>
+		<p class="update">Daily Update <span class="green">-34</span></p>
+		</div>
+		</div>
+		</div>
+		<div class="col-md-4 live_col1">
+		<div class="card">
+		<div class="card-header">
+		<h5 class="card-title">Android <a>342 Live Users</a></h5>
+		<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+		</div>
+		<div class="card-content">
+		<p class="category">Total Downloads <span> 45</span></p>
+		<p class="update">Daily Update <span>-34</span></p>
+		<p class="category">Total Registered Users <span> 1267</span></p>
+		<p class="update">Daily Update <span class="green">-34</span></p>
+		</div>
+		</div>
+		</div>
+		<div class="col-md-4 live_col2">
+		<div class="card">
+		<div class="card-header">
+		<div class="prod_sec">
+		<h5>Total Products</h5>
+		<p>367</p>
+		</div>
+		<div class="prod_sec">
+		<h5>Total Products</h5>
+		<p>45</p>
+		</div>
+		<div class="prod_sec">
+		<h5>Total Products</h5>
+		<p>12,045</p>
+		</div>
+		</div>
+		
+		</div>
+		</div>
+		<div class="row order_sec">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-content">
+		<div class="box_tit">
+		<h4 class="card-title">Orders</h4>
+		</div>
+		<div class="material-datatables">
+		<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="DataTables_Table_0_length"><label>Show <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div><div id="DataTables_Table_0_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="DataTables_Table_0"></label></div><table datatable="ng" class="table table-bordered table-striped table_datatable ng-isolate-scope dataTable no-footer" style="" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+		<thead>
+		<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Date &amp;amp; Time: activate to sort column descending" style="width: 115.2px;">Date &amp; Time</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Order ID: activate to sort column ascending" style="width: 67.2px;">Order ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Customer ID: activate to sort column ascending" style="width: 94.4px;">Customer ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 76px;">Price</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 88.8px;">Status</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Driver: activate to sort column ascending" style="width: 78.4px;">Driver</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Assignment: activate to sort column ascending" style="width: 92px;">Assignment</th></tr>
+		</thead>
+		<tbody>
+		<!-- <tr ng-repeat="users in user">
+		<td>{{$index +1}}</td>
+		<td class="notranslate">{{users.name}}</td>
+		<td><img src='{{users.profilePic}}' class="usr"></td>
+		<td>{{users.email}}</td>
+		<td>{{users.cc}} {{users.mobileNumber}}</td>
+		<td>{{users.lastTime}}</td>
+		<td>{{users.createdAt}}</td>
+		</tr> -->
+		
+		
+		
+		
+		
+		<tr role="row" class="odd">
+		<td class="sorting_1">7/6/20 - 12:43 pm</td>
+		<td class="col_chan">#OR002</td>
+		<td class="col_chan">#Cu_ID_001</td>
+		<td>SAR 628.00</td>
+		<td>On the Way</td>
+		<td class="col_chan text-center">#Dr0020</td>
+		<td class="col_chan text-center">#Assg_ID_1</td>
+		</tr><tr role="row" class="even">
+		<td class="sorting_1">7/6/20 - 12:43 pm</td>
+		<td class="col_chan">#OR002</td>
+		<td class="col_chan">#Cu_ID_003</td>
+		<td>SAR 656.00</td>
+		<td>Delivered</td>
+		<td class="col_chan text-center">#Dr0020</td>
+		<td class="col_chan text-center">#Assg_ID_2</td>
+		</tr><tr role="row" class="odd">
+		<td class="sorting_1">7/6/20 - 12:43 pm</td>
+		<td class="col_chan">#OR003</td>
+		<td class="col_chan">#Cu_ID_007</td>
+		<td>SAR 177.00</td>
+		<td>Pending</td>
+		<td class="driv_btn">Assign Driver</td>
+		<td class="text-center">--</td>
+		</tr><tr role="row" class="even">
+		<td class="sorting_1">7/6/20 - 12:43 pm</td>
+		<td class="col_chan">#OR004</td>
+		<td class="col_chan">#Cu_ID_002</td>
+		<td>SAR 628.00</td>
+		<td>Cancelled</td>
+		<td class="col_chan text-center">#Dr0020</td>
+		<td class="col_chan text-center">#Assg_ID_3</td>
+		</tr><tr role="row" class="odd">
+		<td class="sorting_1">7/6/20 - 12:43 pm</td>
+		<td class="col_chan">#OR005</td>
+		<td class="col_chan">#Cu_ID_008</td>
+		<td>SAR 656.00</td>
+		<td>Re-scheduled</td>
+		<td class="driv_btn">Assign Driver</td>
+		<td class="text-center">--</td>
+		</tr></tbody>
+		</table><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 5 of 5 entries</div><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a class="paginate_button previous disabled" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">Previous</a><span><a class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next">Next</a></div></div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		<div class="col-md-4 noti_sec">
+		<div class="card">
+		<div class="card-header">
+		<h5 class="card-title">Notification</h5>
+		</div>
+		<div class="card_content">
+		<p class="category">Maintnance Updated By #driverId<br>Gas Refill for SAR 50
+		<button style="float: right;">Approve</button>
+		</p>
+		</div>
+		<div class="card_content">
+		<p class="category">Maintnance Updated By #driverId<br>Gas Refill for SAR 50
+		<button style="float: right;">Approve</button>
+		</p>
+		</div>
+		<div class="card_content">
+		<p class="category">Maintnance Updated By #driverId<br>Gas Refill for SAR 50
+		<button style="float: right;">Approve</button>
+		</p>
+		</div>
+		<div class="card_content">
+		<p class="category">Maintnance Updated By #driverId<br>Gas Refill for SAR 50
+		<button style="float: right;">Approve</button>
+		</p>
+		</div>
+		<div class="card_content">
+		<p class="category">Maintnance Updated By #driverId<br>Gas Refill for SAR 50
+		<button style="float: right;">Approve</button>
+		</p>
+		</div>
+		<div class="card_content">
+		<p class="category">Maintnance Updated By #driverId<br>Gas Refill for SAR 50
+		<button style="float: right;">Approve</button>
+		</p>
+		</div>
+		
+		</div>
+		</div>
+		</div>
+		</section>
+		
+		<section class="vari_sec ng-scope">
+		<div class="container-fluid">
+		<div class="row">
+		<div class="col-md-6">
+		<div class="card">
+		<div class="row">
+		<div class="col-md-6">
+		<div class="graph_var">
+		<p>Variable 1 Range : <select><option value="dsfewfew">dsfewfew</option></select></p>
+		</div>	
+		</div>
+		<div class="col-md-6">
+		<div class="graph_var">
+		<p>Variable 2 Range : <span>Current Month</span></p>
+		</div>	
+		</div>
+		</div>
+		
+		<div class="card-content">
+		<!-- <div class="chart">
+		<canvas id="bar" class="chart chart-bar" chart-data="gender_data" chart-labels="gender_labels" chart-options="options" chart-colors="colorsgender">
+		</canvas>
+		</div> -->
+		<img src="assets/img/graph_img.png" class="">
+		</div>
+		</div>
+		</div>
+		<div class="col-md-3 dri_sec">
+		<div class="card">
+		<div class="card-header">
+		<div class="two_col">
+			<h4 class="card-title">Drivers</h4>
+		</div>
+		<div class="two_col1">
+			<img src="assets/img/search_icon.png">
+		</div>
+		</div>
+		<div class="card-content">
+		<div class="row dd_sec">
+		<div class="col-md-3">
+		<img src="assets/img/driver1.png">
+		</div>
+		<div class="col-md-9">
+		<h5>#Dr0020</h5>
+		<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+		<p>Success Rate : 85%</p>
+		<p>Profit : SAR 165.00</p>
+		</div>
+		</div>
+		<div class="row dd_sec">
+		<div class="col-md-3">
+		<img src="assets/img/driver2.png">
+		</div>
+		<div class="col-md-9">
+		<h5>#Dr0020</h5>
+		<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+		<p>Success Rate : 85%</p>
+		<p>Profit : SAR 165.00</p>
+		</div>
+		</div>
+		<div class="row dd_sec">
+		<div class="col-md-3">
+		<img src="assets/img/driver3.png">
+		</div>
+		<div class="col-md-9">
+		<h5>#Dr0020</h5>
+		<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+		<p>Success Rate : 85%</p>
+		<p>Profit : SAR 165.00</p>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		
+		<div class="col-md-3 dri_sec">
+		<div class="card">
+		<div class="card-header">
+		<div class="two_col">
+			<h4 class="card-title">Stores</h4>
+		</div>
+		<div class="two_col1">
+			<img src="assets/img/search_icon.png">
+		</div>
+		</div>
+		<div class="card-content">
+		<div class="row dd_sec">
+		<div class="col-md-3">
+		<img src="assets/img/store1.png">
+		</div>
+		<div class="col-md-9">
+		<h5>#St0146</h5>
+		<p>Total Orders : 256</p>
+		<p>Revenue : SAR 5,264.00</p>
+		<p>Profit : SAR 1,215.00</p>
+		</div>
+		</div>
+		<div class="row dd_sec">
+		<div class="col-md-3">
+		<img src="assets/img/store2.png">
+		</div>
+		<div class="col-md-9">
+		<h5>#St0146</h5>
+		<p>Total Orders : 256</p>
+		<p>Revenue : SAR 5,264.00</p>
+		<p>Profit : SAR 1,215.00</p>
+		</div>
+		</div>
+		<div class="row dd_sec">
+		<div class="col-md-3">
+		<img src="assets/img/store3.png">
+		</div>
+		<div class="col-md-9">
+		<h5>#St0146</h5>
+		<p>Total Orders : 256</p>
+		<p>Revenue : SAR 5,264.00</p>
+		<p>Profit : SAR 1,215.00</p>
+		</div>
+		</div>
+		
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</section>
+		
+		<section class="order_graph ng-scope">
+		<div class="container-fluid">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div id="exTab1" class="container-fluid">	
+		<ul class="nav nav-pills">
+		<li class="active">
+		<a href="#1a" data-toggle="tab">Order Graph</a>
+		</li>
+		<li><a href="#2a" data-toggle="tab">Gross Revenue Graph</a>
+		</li>
+		<li><a href="#3a" data-toggle="tab">App Downloads</a>
+		</li>
+		<li><a href="#4a" data-toggle="tab">Registered Users</a>
+		</li>
+		</ul>
+		
+		<div class="tab-content clearfix">
+		<div class="tab-pane active" id="1a">
+		<div class="row">
+		<div class="col-md-6">
+		<div class="chart"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+		<canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="gender_data" chart-labels="gender_labels" chart-options="options" chart-colors="colorsgender" height="370" width="741" style="display: block; width: 593px; height: 296px;">
+		</canvas>
+		</div>
+		</div>
+		<div class="col-md-2">
+		<div class="chart"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+		<canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="gender_data" chart-labels="gender_labels" chart-options="options" chart-colors="colorsgender" height="115" width="230" style="display: block; width: 184px; height: 92px;">
+		</canvas>
+		</div>
+		</div>
+		<div class="col-md-2">
+		<div class="chart"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+		<canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="gender_data" chart-labels="gender_labels" chart-options="options" chart-colors="colorsgender" height="115" width="230" style="display: block; width: 184px; height: 92px;">
+		</canvas>
+		</div>
+		</div>
+		<div class="col-md-2">
+		<div class="chart"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+		<canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="gender_data" chart-labels="gender_labels" chart-options="options" chart-colors="colorsgender" height="115" width="230" style="display: block; width: 184px; height: 92px;">
+		</canvas>
+		</div>
+		</div>
+		</div>
+		</div>
+		<div class="tab-pane" id="2a">
+		<div class="chart">
+		<canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="gender_data" chart-labels="gender_labels" chart-options="options" chart-colors="colorsgender">
+		</canvas>
+		</div>
+		</div>
+		<div class="tab-pane" id="3a">
+		<div class="chart">
+		<canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="gender_data" chart-labels="gender_labels" chart-options="options" chart-colors="colorsgender">
+		</canvas>
+		</div>
+		</div>
+		<div class="tab-pane" id="4a">
+		<div class="chart">
+		<canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="gender_data" chart-labels="gender_labels" chart-options="options" chart-colors="colorsgender">
+		</canvas>
+		</div>
+		</div>
+		</div>
+		</div>
+		<!-- <div class="chart">
+		<canvas id="line" class="chart chart-line" chart-data="bookingsreg_data" chart-labels="bookingsreg_labels" chart-series="bookings_series" chart-options="lineoptions" chart-dataset-override="linedatasetOverride" chart-click="onClick" chart-colors="colors_bookingsregister">
+		</canvas>
+		</div> -->
+		</div>
+		</div>
+		</div>
+		</div>
+		</section>
+		
+		<section class="buy_sec ng-scope">
+		<div class="container-fluid">
+		<div class="row">
+		<div class="col-md-4">
+		<div class="card">
+		<div id="exTab1" class="container-fluid">	
+		<ul class="nav nav-pills">
+		<li class="active">
+		<a href="#1b" data-toggle="tab">Top Buyer</a>
+		</li>
+		<li><a href="#2b" data-toggle="tab">Top Drivers</a>
+		</li>
+		<li><a href="#3b" data-toggle="tab">Top Stores</a>
+		</li>
+		</ul>
+		
+		<div class="tab-content clearfix">
+		<div class="tab-pane active" id="1b">
+		<div class="buy_img_sec">
+		<div class="buyer_col">
+		<img src="assets/img/buyer1.png">
+		</div>
+		<div class="buyer_col1">
+		<h5>Customer name</h5>
+		<h5>#Cu0715</h5>
+		<p>Total Orders : 845</p>
+		</div>
+		</div>
+		<div class="buy_img_sec">
+		<div class="buyer_col">
+		<img src="assets/img/buyer2.png">
+		</div>
+		<div class="buyer_col1">
+		<h5>Customer name</h5>
+		<h5>#Cu0715</h5>
+		<p>Total Orders : 845</p>
+		</div>
+		</div>
+		<div class="buy_img_sec">
+		<div class="buyer_col">
+		<img src="assets/img/buyer3.png">
+		</div>
+		<div class="buyer_col1">
+		<h5>Customer name</h5>
+		<h5>#Cu0715</h5>
+		<p>Total Orders : 845</p>
+		</div>
+		</div>
+		</div>
+		<div class="tab-pane" id="2b">
+		<div class="buy_img_sec">
+		<div class="buyer_col">
+		<img src="assets/img/driver1.png">
+		</div>
+		<div class="buyer_col1">
+		<h5>Customer name</h5>
+		<h5>#Cu0715</h5>
+		<p>Total Orders : 845</p>
+		</div>
+		</div>
+		<div class="buy_img_sec">
+		<div class="buyer_col">
+		<img src="assets/img/driver2.png">
+		</div>
+		<div class="buyer_col1">
+		<h5>Customer name</h5>
+		<h5>#Cu0715</h5>
+		<p>Total Orders : 845</p>
+		</div>
+		</div>
+		<div class="buy_img_sec">
+		<div class="buyer_col">
+		<img src="assets/img/driver3.png">
+		</div>
+		<div class="buyer_col1">
+		<h5>Customer name</h5>
+		<h5>#Cu0715</h5>
+		<p>Total Orders : 845</p>
+		</div>
+		</div>
+		</div>
+		<div class="tab-pane" id="3b">
+		<div class="buy_img_sec">
+		<div class="buyer_col">
+		<img src="assets/img/store1.png">
+		</div>
+		<div class="buyer_col1">
+		<h5>Customer name</h5>
+		<h5>#Cu0715</h5>
+		<p>Total Orders : 845</p>
+		</div>
+		</div>
+		<div class="buy_img_sec">
+		<div class="buyer_col">
+		<img src="assets/img/store2.png">
+		</div>
+		<div class="buyer_col1">
+		<h5>Customer name</h5>
+		<h5>#Cu0715</h5>
+		<p>Total Orders : 845</p>
+		</div>
+		</div>
+		<div class="buy_img_sec">
+		<div class="buyer_col">
+		<img src="assets/img/store3.png">
+		</div>
+		<div class="buyer_col1">
+		<h5>Customer name</h5>
+		<h5>#Cu0715</h5>
+		<p>Total Orders : 845</p>
+		</div>
+		</div>
+		</div>
+		
+		</div>
+		</div>
+		</div>
+		</div>
+		
+		<div class="col-md-4">
+		<div class="card">
+		<div class="card-header">
+		<div class="two_col">
+		<h4>Top Products Sales</h4>
+		</div>
+		<div class="two_col1">
+		<h4>Product Stats</h4>
+		</div>
+		</div>
+		
+		<div class="chart"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+		<canvas id="line" class="chart chart-line ng-isolate-scope" chart-data="doctorsreg_data" chart-labels="doctorsreg_labels" chart-series="doctors_series" chart-options="lineoptions" chart-dataset-override="linedatasetOverride" chart-click="onClick" chart-colors="colors_doctorsregister" height="246" width="493" style="display: block; width: 395px; height: 197px;">
+		</canvas>
+		</div>
+		</div>
+		</div>
+		
+		<div class="col-md-4">
+		<div class="card">
+		<div id="exTab1" class="container-fluid">	
+		<ul class="nav nav-pills">
+		<li class="active">
+		<a href="#1c" data-toggle="tab">Heatmap - Data</a>
+		</li>
+		<li><a href="#2c" data-toggle="tab">Heatmap - Map View</a>
+		</li>
+		</ul>
+		
+		<div class="tab-content clearfix">
+		<div class="tab-pane active" id="1c">
+		<div class="chart"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+		<canvas id="line" class="chart chart-line ng-isolate-scope" chart-data="doctorsreg_data" chart-labels="doctorsreg_labels" chart-series="doctors_series" chart-options="lineoptions" chart-dataset-override="linedatasetOverride" chart-click="onClick" chart-colors="colors_doctorsregister" height="228" width="457" style="display: block; width: 366px; height: 183px;">
+		</canvas>
+		</div>
+		</div>
+		<div class="tab-pane" id="2c">
+		<div class="chart">
+		<canvas id="line" class="chart chart-line ng-isolate-scope" chart-data="doctorsreg_data" chart-labels="doctorsreg_labels" chart-series="doctors_series" chart-options="lineoptions" chart-dataset-override="linedatasetOverride" chart-click="onClick" chart-colors="colors_doctorsregister">
+		</canvas>
+		</div>
+		</div>
+		
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div></section>
+		
+		<section class="feedback_sec ng-scope">
+		<div class="container-fluid">
+		<div class="col-md-12">
+		<div class="card">
+		<div id="exTab1" class="container-fluid">	
+		<ul class="nav nav-pills">
+		<li class="active"><a href="#1d" data-toggle="tab">User Feedback</a></li>
+		<li><a href="#2d" data-toggle="tab">App Feedback</a></li>
+		<li><a href="#3d" data-toggle="tab">Driver Feedback</a></li>
+		<li class="all_feed"><a href="">View All User Feedbacks</a></li>
+		</ul>
+		
+		<div class="tab-content clearfix">
+		<div class="tab-pane active" id="1d">
+		<div class="material-datatables">
+		<div id="DataTables_Table_1_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="DataTables_Table_1_length"><label>Show <select name="DataTables_Table_1_length" aria-controls="DataTables_Table_1" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div><div id="DataTables_Table_1_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="DataTables_Table_1"></label></div><table datatable="ng" class="table table-bordered table-striped table_datatable ng-isolate-scope dataTable no-footer" style="" id="DataTables_Table_1" role="grid" aria-describedby="DataTables_Table_1_info">
+		<thead>
+		<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Date &amp;amp; Time: activate to sort column descending" style="width: 127.2px;">Date &amp; Time</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Store ID: activate to sort column ascending" style="width: 87.2px;">Store ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Order ID: activate to sort column ascending" style="width: 91.2px;">Order ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Customer ID: activate to sort column ascending" style="width: 126.4px;">Customer ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Driver ID: activate to sort column ascending" style="width: 95.2px;">Driver ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 60px;">Price</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Driver Rating: activate to sort column ascending" style="width: 134.4px;">Driver Rating</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Product Rating: activate to sort column ascending" style="width: 149.6px;">Product Rating</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Comments: activate to sort column ascending" style="width: 114.4px;">Comments</th></tr>
+		</thead>
+		<tbody>
+		<!-- ngRepeat: users in user -->
+		<tr class="odd"><td valign="top" colspan="9" class="dataTables_empty">No data available in table</td></tr></tbody>
+		</table><div class="dataTables_info" id="DataTables_Table_1_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate"><a class="paginate_button previous disabled" aria-controls="DataTables_Table_1" data-dt-idx="0" tabindex="0" id="DataTables_Table_1_previous">Previous</a><span></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_1" data-dt-idx="1" tabindex="0" id="DataTables_Table_1_next">Next</a></div></div>
+		</div>
+		</div>
+		<div class="tab-pane" id="2d">
+		<div class="material-datatables">
+		<div id="DataTables_Table_2_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="DataTables_Table_2_length"><label>Show <select name="DataTables_Table_2_length" aria-controls="DataTables_Table_2" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div><div id="DataTables_Table_2_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="DataTables_Table_2"></label></div><table datatable="ng" class="table table-bordered table-striped table_datatable ng-isolate-scope dataTable no-footer" style="" id="DataTables_Table_2" role="grid" aria-describedby="DataTables_Table_2_info">
+		<thead>
+		<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Date &amp;amp; Time: activate to sort column descending" style="width: 0px;">Date &amp; Time</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-label="Store ID: activate to sort column ascending" style="width: 0px;">Store ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-label="Order ID: activate to sort column ascending" style="width: 0px;">Order ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-label="Customer ID: activate to sort column ascending" style="width: 0px;">Customer ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-label="Driver ID: activate to sort column ascending" style="width: 0px;">Driver ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 0px;">Price</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-label="Driver Rating: activate to sort column ascending" style="width: 0px;">Driver Rating</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-label="Product Rating: activate to sort column ascending" style="width: 0px;">Product Rating</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" aria-label="Comments: activate to sort column ascending" style="width: 0px;">Comments</th></tr>
+		</thead>
+		<tbody>
+		<!-- ngRepeat: users in user -->
+		<tr class="odd"><td valign="top" colspan="9" class="dataTables_empty">No data available in table</td></tr></tbody>
+		</table><div class="dataTables_info" id="DataTables_Table_2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate"><a class="paginate_button previous disabled" aria-controls="DataTables_Table_2" data-dt-idx="0" tabindex="0" id="DataTables_Table_2_previous">Previous</a><span></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_2" data-dt-idx="1" tabindex="0" id="DataTables_Table_2_next">Next</a></div></div>
+		</div>
+		</div>
+		<div class="tab-pane" id="3d">
+		<div class="material-datatables">
+		<div id="DataTables_Table_3_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="DataTables_Table_3_length"><label>Show <select name="DataTables_Table_3_length" aria-controls="DataTables_Table_3" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div><div id="DataTables_Table_3_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="DataTables_Table_3"></label></div><table datatable="ng" class="table table-bordered table-striped table_datatable ng-isolate-scope dataTable no-footer" style="" id="DataTables_Table_3" role="grid" aria-describedby="DataTables_Table_3_info">
+		<thead>
+		<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Date &amp;amp; Time: activate to sort column descending" style="width: 0px;">Date &amp; Time</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" aria-label="Store ID: activate to sort column ascending" style="width: 0px;">Store ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" aria-label="Order ID: activate to sort column ascending" style="width: 0px;">Order ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" aria-label="Customer ID: activate to sort column ascending" style="width: 0px;">Customer ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" aria-label="Driver ID: activate to sort column ascending" style="width: 0px;">Driver ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 0px;">Price</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" aria-label="Driver Rating: activate to sort column ascending" style="width: 0px;">Driver Rating</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" aria-label="Product Rating: activate to sort column ascending" style="width: 0px;">Product Rating</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" aria-label="Comments: activate to sort column ascending" style="width: 0px;">Comments</th></tr>
+		</thead>
+		<tbody>
+		<!-- ngRepeat: users in user -->
+		<tr class="odd"><td valign="top" colspan="9" class="dataTables_empty">No data available in table</td></tr></tbody>
+		</table><div class="dataTables_info" id="DataTables_Table_3_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_3_paginate"><a class="paginate_button previous disabled" aria-controls="DataTables_Table_3" data-dt-idx="0" tabindex="0" id="DataTables_Table_3_previous">Previous</a><span></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_3" data-dt-idx="1" tabindex="0" id="DataTables_Table_3_next">Next</a></div></div>
+		</div>
+		</div>
+		</div>
+		</div>
+		
+		
+		</div>
+		</div>
+		</div>
+		</section>
+		</div>
+		</div>
+</div>

@@ -1,0 +1,389 @@
+<div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="content">
+    <!-- uiView:  -->
+    <div ui-view="" class="ng-scope">
+    <section class="custom_head">
+       <div class="container-fluid">
+          <div class="row">
+             <div class="col-md-6">
+                <ul>
+                   <li style="padding-left: 10px;">
+                      Map View &nbsp;&nbsp; 
+                      <label class="switch">
+                      <input type="checkbox" (change)="onchangeMap($event)">
+                      <span class="slider"></span>
+                      </label>
+                   </li>
+                   <li>
+                      <select (change)="onChangeFilter($event.target.value, 'Status')">
+                         <option value="ALL">Order Status</option>
+                         <option value="PENDING">Pending</option>
+                         <option value="ACCEPTED">Accepted</option>
+                         <option value="ONGOING">Ongoing</option>
+                         <option value="CANCELLED">Cancelled</option>
+                         <option value="COMPLETED">Completed</option>
+                      </select>
+                   </li>
+                   <li>
+                      <select (change)="onChangeFilter($event.target.value, 'StoreStatus')">
+                         <option value="NONE">Store Status</option>
+                         <option value="ACCEPTED">Accepted</option>
+                         <option value="REJECTED">Rejected</option>
+                         <option value="ONGOING">Ongoing</option>
+                      </select>
+                   </li>
+                   <li>
+                      <select (change)="onChangeFilter($event.target.value, 'Delivery')">
+                          <option value="0">Delivery Time</option>
+                         <option value="{{item.id}}" *ngFor="let item of timeList">{{item.fromTime}} - {{item.toTime}}</option>
+                      </select>
+                   </li>
+
+                   <li>
+
+                     <input type="text" bsDatepicker  placeholder="Select Date"  (bsValueChange) ="value($event)" [(bsValue)]="bsValue" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" readonly   [outsideClick] = "true"  class="form-control datepicker">
+
+                     <!-- <input type="text" bsDatepicker  placeholder="Pickup Date"  (ngModelChange)="changeDate($event)" [(bsValue)]="bsValue" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" readonly   [outsideClick] = "true"  class="form-control datepicker"> -->
+
+                   </li>
+                </ul>
+             </div>
+             <div class="col-md-6 right_cont">
+                <ul>
+                   <li>
+                      <a (click)="pageReload()" > <i class="fa fa-refresh"></i> </a>
+                   </li>
+                </ul>
+             </div>
+          </div>
+       </div>
+    </section>
+    <section class="custom_head">
+       <div class="container-fluid">
+          <div class="card">
+             <div class="card-content">
+                <div class="row" *ngIf ="showMap">
+                   <div class="col-md-12">
+                      <agm-map 
+                      [latitude]="lat"
+                      [longitude]="lng"
+                      [zoom]="zoom"
+                      [disableDefaultUI]="false"
+                      [zoomControl]="false">
+                      <agm-marker 
+                      *ngFor="let m of markers; let i = index"
+                      (markerClick)="clickedMarker(infowindow)"
+                      [latitude]="m.latitude"
+                      [longitude]="m.longitude"
+                      >
+                      <agm-info-window #infowindow>
+                         <p><strong>Name: </strong> {{m.addressPinDetails}}</p>
+                      </agm-info-window>
+                      </agm-marker>
+                      </agm-map>
+                      <!-- <div id="map"></div> -->
+                   </div>
+                </div>
+                <div class="row">
+                   <div class="col-md-12">
+                      <div class="material-datatables">
+                         <div class="table-responsive text-nowrap">
+                            <table class="table table-bordered table-striped table_datatable" id="customerTable">
+                               <thead>
+                                  <tr>
+                                     <th>Date</th>
+                                     <th>Order ID</th>
+                                     <th>Delivery By</th>
+                                     <th>Customer ID</th>
+                                     <th>Price</th>
+                                     <th>Payment</th>
+                                     <th>Order Status</th>
+                                     <!-- <th>Cancellation %</th> -->
+                                     <th>Status</th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                  <tr *ngFor="let item of orderList;let i = index" >
+                                     <td>{{item.orderOn}}</td>
+                                     <td><span class="red_color"><a routerLink="/order-details/{{ item.id }}">{{item.orderIDs}}</a></span></td>
+                                     <td>{{item.deliveryDate}}</td>
+                                     <td><span class="red_color"><a routerLink="/customer/{{ item.userId }}">{{item.customerID}}</a></span><br><span>{{item.firstName}}</span><br><span>{{item.landmark}}, {{item.addressPinDetails}}</span></td>
+                                     <td>SAR {{item.grandTotal}}</td>
+                                     <td>
+                                       <span *ngIf = "item.paytype === 'card'" class="online_btn">Paid Online</span>
+
+                                       <span *ngIf = "item.paytype === 'cash'" class="cod_btn">C.O.D</span>
+                                      </td>
+                                     <!-- <td><span class="online_btn">Paid Online</span></td> -->
+                                     <!-- <td><span class="yellow">Pending</span><br>Not confirmed by #store_ID</td> -->
+                                     <td >
+                                       <div *ngFor="let store of item.storeList">
+                                         <p *ngIf = "store.storeStatus == 'NOT CONFIRM'" > <span  class="red_color"><a routerLink="/view-store/{{ store.storeId }}">{{store.storeID}}</a></span>&nbsp;&nbsp;<span>{{store.storeStatus}}</span>&nbsp;&nbsp;<span class="yellow">Not Confirmed</span><br></p>
+                                        <p *ngIf = "store.storeStatus == 'ACCEPTED'" > <span class="red_color"><a routerLink="/view-store/{{ store.storeId }}">{{store.storeID}}</a></span>&nbsp;&nbsp;<span>{{store.storeStatus}}</span>&nbsp;&nbsp;<span class="green">Accepted</span><br></p>
+                                        <p *ngIf = "store.storeStatus == 'PICKUP'" > <span class="red_color"><a routerLink="/view-store/{{ store.storeId }}">{{store.storeID}}</a></span>&nbsp;&nbsp;<span>{{store.storeStatus}}</span>&nbsp;&nbsp;<span class="green">Accepted</span><br></p>
+
+                                         <p *ngIf = "store.storeStatus == 'REJECTED'" ><span class="red_color">{{store.storeID}}</span>&nbsp;&nbsp;<span>{{store.storeStatus}}</span>&nbsp;&nbsp;<span class="red_color">Rejected</span></p>
+                                          <!-- <span class="red_color">{{store.storeID}}</span>&nbsp;&nbsp;<span>{{store.storeName}}</span>&nbsp;&nbsp;<span class="yellow">{{store.storeStatus}}</span><br> -->
+                                       </div>
+                                    </td>
+                                     <td><span class="pend_btn">Not Assign</span></td>
+                                  </tr>
+                                  <!-- <tr>
+                                     <td>7/6/20 - 12:43 pm</td>
+                                     <td><span class="red_color">#Order_ID</span></td>
+                                     <td>7/6/20 - 12:43 pm</td>
+                                     <td><span class="red_color">#Cu_ID</span><br><span>Hassan M</span><br><span>Additional info about customer</span></td>
+                                     <td>SAR 359.00</td>
+                                     <td><span class="cod_btn">C.O.D</span></td>
+                                     <td><span class="blue">On the way</span><br>On way to #store_id</td>
+                                     <td><span class="red_color">#Store_ID</span>&nbsp;&nbsp;<span>Meat Store</span>&nbsp;&nbsp;<span class="yellow">Not Confirmed</span><br>
+                                     <span class="red_color">#Store_ID</span>&nbsp;&nbsp;<span>Fruit Store</span>&nbsp;&nbsp;<span class="green">Accepted</span>
+                                     </td>
+                                     <td><span class="red_color">#Driver_ID</span><br><span class="orange">02:49:01</span></td>
+                                     </tr> -->
+                               </tbody>
+                               <ngb-pagination  [collectionSize]="pages" (pageChange)="nextPage($event)" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+
+                            </table>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+    <section class="customer_modal">
+    <div class="modal right fade" id="cust_btn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <div class="row">
+                <div class="col-md-4">
+                   <div class="row">
+                      <div class="col-md-7">
+                         <ul>
+                            <li><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></li>
+                            <li class="stat_btn text-center">
+                               <label>Status</label>
+                               <button type="button" class="btn btn-xs btn-secondary btn-toggle" data-toggle="button" aria-pressed="true" autocomplete="off">
+                                  <div class="handle"></div>
+                               </button>
+                            </li>
+                         </ul>
+                      </div>
+                      <div class="col-md-5">
+                         <ul class="right_side_icon">
+                            <li><img src="assets/img/edit_icon.svg"></li>
+                            <li><img src="assets/img/delete_icon.svg"></li>
+                         </ul>
+                      </div>
+                   </div>
+                   <div class="modal-body">
+                      <div class="row">
+                         <div class="col-md-5">
+                            <img src="assets/img/custo_img.png" class="cuto_img">
+                         </div>
+                         <div class="col-md-7">
+                            <div class="custo_sec">
+                               <p>#Customer_ID</p>
+                               <table class="table table-bordered table-striped table_datatable" id="customerTable">
+                                  <tbody>
+                                     <tr>
+                                        <td class="cus_head">Platform</td>
+                                        <td>iOS</td>
+                                     </tr>
+                                     <tr>
+                                        <td class="cus_head">Wallet Point</td>
+                                        <td>2,154</td>
+                                     </tr>
+                                     <tr>
+                                        <td class="cus_head">Wallet Balance</td>
+                                        <td>SAR 125.00</td>
+                                     </tr>
+                                     <tr>
+                                        <td class="cus_head">Total Orders</td>
+                                        <td>64</td>
+                                     </tr>
+                                     <tr>
+                                        <td class="cus_head">Total Spent</td>
+                                        <td>SAR 1,645.00</td>
+                                     </tr>
+                                     <tr>
+                                        <td class="cus_head">Cancellation %</td>
+                                        <td>6%</td>
+                                     </tr>
+                                     <tr>
+                                        <td class="cus_head">Signup Date</td>
+                                        <td>22/11/20</td>
+                                     </tr>
+                                  </tbody>
+                               </table>
+                            </div>
+                         </div>
+                      </div>
+                      <ul>
+                         <li class="trust text-center">
+                            <label>Trusty User</label>
+                            <button type="button" class="btn btn-xs btn-secondary btn-toggle" data-toggle="button" aria-pressed="true" autocomplete="off">
+                               <div class="handle"></div>
+                            </button>
+                         </li>
+                         <li><button type="button" class="action_log_btn" data-toggle="modal" data-target="#action_log">View Action Log</button></li>
+                      </ul>
+                      <form>
+                         <div class="row">
+                            <div class="col-md-6">
+                               <div class="form-group">
+                                  <label>First Name</label>
+                                  <input type="text" name="" class="form-control" placeholder="Sharad">
+                               </div>
+                            </div>
+                            <div class="col-md-6">
+                               <div class="form-group">
+                                  <label>Last Name</label>
+                                  <input type="text" name="" class="form-control" placeholder="Kant">
+                               </div>
+                            </div>
+                         </div>
+                         <div class="row">
+                            <div class="col-md-12">
+                               <div class="form-group">
+                                  <label>Email Address</label>
+                                  <input type="email" name="" class="form-control" placeholder="consult@sharadkant.com">
+                               </div>
+                            </div>
+                         </div>
+                         <div class="row">
+                            <div class="col-md-6">
+                               <div class="form-group">
+                                  <label>Phone Number</label>
+                                  <input type="number" name="" class="form-control" placeholder="+91 1234-568-980">
+                               </div>
+                            </div>
+                            <div class="col-md-6">
+                               <div class="form-group">
+                                  <label>Date of Birth</label>
+                                  <input type="text" name="" class="form-control" placeholder="22/11/20">
+                               </div>
+                            </div>
+                         </div>
+                         <div class="row">
+                            <div class="col-md-12">
+                               <div class="form-group">
+                                  <label>Address</label>
+                                  <input type="email" name="" class="form-control" placeholder="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy">
+                               </div>
+                            </div>
+                         </div>
+                         <div class="row">
+                            <div class="col-md-12">
+                               <div class="form-group">
+                                  <label>Address Note From Driver</label>
+                                  <input type="email" name="" class="form-control" placeholder="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy">
+                               </div>
+                            </div>
+                         </div>
+                         <div class="row">
+                            <div class="col-md-12">
+                               <div class="form-group">
+                                  <label>Select Gender</label>
+                                  <ul>
+                                     <li>Female</li>
+                                     <li>
+                                        <button type="button" class="btn btn-xs btn-secondary btn-toggle active" data-toggle="button" aria-pressed="true" autocomplete="off">
+                                           <div class="handle"></div>
+                                        </button>
+                                     </li>
+                                     <li>Male</li>
+                                  </ul>
+                               </div>
+                            </div>
+                         </div>
+                      </form>
+                   </div>
+                </div>
+                <div class="col-md-8">
+                   <div class="row">
+                      <div class="col-md-8">
+                         <ul>
+                            <li><img src="assets/img/left_arrow.svg"></li>
+                            <li>
+                               <select>
+                                  <option>Start Date</option>
+                               </select>
+                            </li>
+                            <li>
+                               <select>
+                                  <option>End Date</option>
+                               </select>
+                            </li>
+                         </ul>
+                      </div>
+                      <div class="col-md-4 custom_head">
+                         <ul class="right_cont">
+                            <li>
+                               <i class="fa fa-refresh"></i>
+                            </li>
+                            <li>
+                               <a href="" class="export_btn">Export XLS</a>
+                            </li>
+                         </ul>
+                      </div>
+                   </div>
+                   <section class="extand_table">
+                      <div class="material-datatables">
+                         <div class="table-responsive text-nowrap">
+                            <table class="table table-bordered table-striped table_datatable" id="customerTable">
+                               <thead>
+                                  <tr>
+                                     <th>Entry</th>
+                                     <th>Action</th>
+                                     <th>Stores</th>
+                                     <th>Order</th>
+                                     <th>Wallet Point<br><span class="red_color">Total = 10,000.00</span></th>
+                                     <th>Wallet Balance<br><span class="red_color">Total = SAR 852.00</span></th>
+                                     <th>Price</th>
+                                     <th>Product Rating</th>
+                                     <th>Driver Rating</th>
+                                     <th>Feedback Note</th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                  <tr>
+                                     <td>7/6/20 - 12:43 pm</td>
+                                     <td>Place New Order</td>
+                                     <td><span class="red_color">#Store_ID_1</span> <br><span class="red_color">#Store_ID_2</span></td>
+                                     <td><span class="red_color">#Order_ID</span> <br> Order Status : <span class="green">Delivered</span></td>
+                                     <td>- -</td>
+                                     <td><span class="red_color">+ SAR 50.00</span></td>
+                                     <td>SAR 177.00 <br> <span class="online_btn">Paid Online</span></td>
+                                     <td><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></td>
+                                     <td><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></td>
+                                     <td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</td>
+                                  </tr>
+                                  <tr>
+                                     <td>7/6/20 - 12:43 pm</td>
+                                     <td>Refund Credit on order</td>
+                                     <td>- -</td>
+                                     <td><span class="red_color">#Order_ID</span> <br> Order Status : <span class="blue">Ongoing</span></td>
+                                     <td><span class="green">+ 600.00</span> <br> <span class="yellow">Expires on : 15/15/20</span></td>
+                                     <td><span class="green">+ SAR 50.00</span></td>
+                                     <td>SAR 177.00 <br> <span class="cod_btn">C.O.D</span></td>
+                                     <td><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></td>
+                                     <td><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></td>
+                                     <td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</td>
+                                  </tr>
+                               </tbody>
+                            </table>
+                         </div>
+                      </div>
+                   </section>
+                </div>
+             </div>
+          </div>
+          <!-- modal-content -->
+       </div>
+       <!-- modal-dialog -->
+    </div>

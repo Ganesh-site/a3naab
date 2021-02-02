@@ -1,0 +1,207 @@
+<div class="main-panel">
+    <app-navbar></app-navbar>
+    
+    <div class="content">
+    <!-- uiView:  -->
+    <div ui-view="" class="ng-scope">
+    <section class="custom_head">
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-9">
+    <ul>
+    <li>
+    <div class="form-group">
+    <select>
+    <option>Select Category</option>
+    </select>
+    </div>
+    </li>
+    <li>
+    <div class="form-group">
+    <select>
+    <option>Select Subcategory</option>
+    </select>
+    </div>
+    </li>
+    <li>
+    <div class="form-group">
+    <select>
+    <option>Select Sub-Subcategory</option>
+    </select>
+    </div>
+    </li>
+    <li>
+    <div class="form-group">
+    <select>
+    <option>Status</option>
+    </select>
+    </div>
+    </li>
+    </ul>
+    </div>
+    <div class="col-md-3 right_tick">
+    <ul>
+    <li>
+    <button type="button" class="add_tick_btn" data-toggle="modal" data-target="#add_driv_btn">Add Ticket</button>
+    </li>
+    <li>
+    <a href="" class="export_btn">Export XLS</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    <section class="custom_head">
+    <div class="container-fluid">
+    <div class="card">
+    <div class="card-content">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="above_table_sec">
+    <ul>
+    <li><span class="light_color">Total Queries</span> : 129</li>
+    <li><span class="light_color">Pending Queries</span> : 26</li>
+    <li><span class="light_color">Resolved Queries</span> : 137</li>
+    <li><span class="light_color">Escalated Queries</span> : 56</li>
+    </ul>
+    </div>
+    <div class="suppor_li_table">
+    <div class="material-datatables">
+    <div class="table-responsive">
+    <table datatable="ng" class="table table-bordered table-striped table_datatable" id="customerTable">
+    <thead>
+    <tr>
+    <th>Date & Time</th>
+    <th>User</th>
+    <th>Support ID</th>
+    <th>Customer ID</th>
+    <th>Order ID</th>
+    <th>Store ID</th>
+    <th>Driver ID</th>
+    <th>Category</th>
+    <th class="text-center">Status</th>
+    <th class="text-center">Action</th>
+    <th>Note</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>7/6/20 - 12:43 pm</td>
+    <td>Driver</td>
+    <td><span class="red_color">#Support_ID</span></td>
+    <td><span class="red_color">#Customer_ID</span></td>
+    <td><span class="red_color">#Order_ID</span></td>
+    <td><span class="red_color">#Store1_ID</span><br>
+    <span class="red_color">#Store2_ID</span></td>
+    <td><span class="red_color">#Driver_ID</span></td>
+    <td>Failed Order</td>
+    <td class="text-center"><select class="reject_btn">
+    <option>Escalated</option>
+    </select></td>
+    <td class="text-center"><span class="whatsapp_btn">Whatsapp</span></td>
+    <td>Lorem ipsum dolor sit amet</td>
+    </tr>
+    
+    <tr>
+    <td>7/6/20 - 12:43 pm</td>
+    <td>Customer</td>
+    <td><span class="red_color">#Support_ID</span></td>
+    <td><span class="red_color">#Customer_ID</span></td>
+    <td><span class="red_color">#Order_ID</span></td>
+    <td><span class="red_color">#Store_ID</span></td>
+    <td><span class="red_color">#Driver_ID</span></td>
+    <td>Failed</td>
+    <td class="text-center"><select class="accep_btn">
+    <option>Resolved</option>
+    </select></td>
+    <td class="text-center"><span class="call_btn">Call</span></td>
+    <td><span class="note_btn">Add Note</span></td>
+    </tr>
+    
+    <tr>
+    <td>7/6/20 - 12:43 pm</td>
+    <td>Store Manager</td>
+    <td><span class="red_color">#Support_ID</span></td>
+    <td><span class="red_color">#Customer_ID</span></td>
+    <td><span class="red_color">#Order_ID</span></td>
+    <td><span class="red_color">#Store_ID</span></td>
+    <td><span class="red_color">#Driver_ID</span></td>
+    <td>Failed</td>
+    <td class="text-center"><select class="pend_btn">
+    <option>Pending</option>
+    </select></td>
+    <td class="text-center"><span class="call_btn">Call</span></td>
+    <td>Lorem ipsum dolor sit amet</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    <section class="add_driv_sec">
+    <div class="modal right fade" id="add_driv_btn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    
+    <div class="modal-header">
+    <div class="row">
+    <div class="col-md-7">
+    <ul>
+    <li><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></li>
+    </ul>
+    </div>
+    <div class="col-md-5"></div>
+    </div>
+    </div>
+    
+    <div class="modal-body">
+    <form class="tick_form">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="form-group">
+    <label>Customer Phone Number</label>
+    <input type="text" name="" class="form-control" placeholder="xxx - xxxx - xxx">
+    </div>
+    </div>
+    </div>
+    <br>
+    <div class="row">
+    <div class="col-md-6">
+    <div class="form-group">
+    <label>Select User</label>
+    <select>
+    <option>Store Manager</option>
+    </select>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form-group">
+    <label>Select Category</label>
+    <select>
+    <option>None</option>
+    </select>
+    </div>
+    </div>
+    </div>
+    
+    <div class="add_tick_sec">
+    <p class="text-center"><button class="add_car_btn">Add Ticket</button></p>
+    </div>
+    </form>
+    </div>
+    
+    </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+    </div>
+    
+    
+    

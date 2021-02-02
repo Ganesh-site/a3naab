@@ -1,0 +1,185 @@
+<div class="main-panel">
+<app-navbar></app-navbar>
+
+<div class="content">
+<!-- uiView:  -->
+<div ui-view="" class="ng-scope">
+<section class="store_tab">
+<div class="container-fluid">
+<div id="exTab1">
+<ul class="nav nav-pills">
+<li class="active">
+<a href="#1b" data-toggle="tab">User Feedbacks</a>
+</li>
+<li><a href="#2b" data-toggle="tab">Apps Feedbacks</a>
+</li>
+<li><a href="#3b" data-toggle="tab">Driver Feedbacks</a>
+</li>
+<li class="refresh_btn">
+<i class="fa fa-refresh"></i>
+</li>
+</ul>
+
+
+<div class="tab-content clearfix">
+<div class="tab-pane active" id="1b">
+<div class="feedback_table">
+<div class="card">
+<div class="card-content">
+<div class="table-responsive">
+<div class="material-datatables">
+<table datatable="ng" class="table table-bordered table-striped table_datatable" id="customerTable">
+<thead>
+<tr>
+<th>Date & Time</th>
+<th>Store ID</th>
+<th>Order ID</th>
+<th>Customer ID</th>
+<th>Driver ID</th>
+<th>Price</th>
+<th>Driver Rating</th>
+<th>Product Raiting</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7/6/20 - 7:43pm</td>
+<td class="red_color">#Store_ID</td>
+<td class="red_color">#Order_ID</td>
+<td class="red_color">#Customer_ID</td>
+<td class="red_color">#Driver_ID</td>
+<td>SAR 628.00</td>
+<td><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></td>
+<td><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></td>
+<td>Lorem ipsum dolor sit amet, consetetur sadipscing.</td>
+</tr>
+
+<tr>
+<td>7/6/20 - 7:43pm</td>
+<td class="red_color">#Store_ID</td>
+<td class="red_color">#Order_ID</td>
+<td class="red_color">#Customer_ID</td>
+<td class="red_color">#Driver_ID</td>
+<td>SAR 532.00</td>
+<td><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></td>
+<td><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></td>
+<td>Lorem ipsum dolor sit amet, consetetur sadipscing.</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="tab-pane" id="2b">
+<div class="feedback_table">
+<div class="card">
+<div class="card-content">
+<div class="table-responsive">
+<div class="material-datatables">
+<table datatable="ng" class="table table-bordered table-striped table_datatable" id="customerTable">
+<thead>
+<tr>
+<th>Date & Time</th>
+<th>Customer ID</th>
+<th>Application</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7/6/20 - 7:43pm</td>
+<td class="red_color">#Customer_ID</td>
+<td class="dark_font">IOS</td>
+<td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero</td>
+</tr>
+
+<tr>
+<td>7/6/20 - 7:43pm</td>
+<td class="red_color">#Customer_ID</td>
+<td class="dark_font">Android</td>
+<td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero</td>
+</tr>
+
+<tr>
+<td>7/6/20 - 7:43pm</td>
+<td class="red_color">#Customer_ID</td>
+<td class="dark_font">IOS</td>
+<td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero</td>
+</tr>
+
+<tr>
+<td>7/6/20 - 7:43pm</td>
+<td class="red_color">#Customer_ID</td>
+<td class="dark_font">Android</td>
+<td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="tab-pane" id="3b">
+<div class="feedback_table">
+<div class="card">
+<div class="card-content">
+<div class="table-responsive">
+<div class="material-datatables">
+<table datatable="ng" class="table table-bordered table-striped table_datatable" id="customerTable">
+<thead>
+<tr>
+<th>Date & Time</th>
+<th>Store ID</th>
+<th>Order ID</th>
+<th>Customer ID</th>
+<th>Driver ID</th>
+<th>Price</th>
+<th>Difficult to Find Location</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7/6/20 - 7:43pm</td>
+<td class="red_color">#Store_ID</td>
+<td class="red_color">#Order_ID</td>
+<td class="red_color">#Customer_ID</td>
+<td class="red_color">#Driver_ID</td>
+<td>SAR 628.00</td>
+<td class="text-center">Yes</td>
+<td>Lorem ipsum dolor sit amet, consetetur sadipscing.</td>
+</tr>
+
+<tr>
+<td>7/6/20 - 7:43pm</td>
+<td class="red_color">#Store_ID</td>
+<td class="red_color">#Order_ID</td>
+<td class="red_color">#Customer_ID</td>
+<td class="red_color">#Driver_ID</td>
+<td>SAR 832.00</td>
+<td class="text-center">Yes</td>
+<td>Lorem ipsum dolor sit amet, consetetur sadipscing.</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>

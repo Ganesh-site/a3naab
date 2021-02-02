@@ -1,0 +1,93 @@
+
+<form [formGroup]="subCategoryForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+    <div class="col-md-2">
+    <input type="file" id="input-file-now-custom-1" formControlName="productCategoryImage" (change)="onSelectFile($event)" accept=".png, .jpg, .jpeg">
+    </div>
+    <div class="col-md-10">
+    <div class="row">
+    <div class="col-md-2">
+    <div class="form-group">
+    <label>Min. Order Value</label>
+    <input type="text"  class="form-control"  formControlName="minimumOrderValue">
+    </div>
+    </div>
+    <div class="col-md-3">
+    <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" formControlName="productCategoryName">
+    </div>
+    </div>
+    <div class="col-md-3">
+    <div class="form-group">
+    <label>Arabic Name</label>
+    <input type="text" formControlName="arabicName" class="form-control">
+    </div>
+    </div>
+    <div class="col-md-4">
+    <div class="form-group">
+    <label class="perm">Permissions</label>
+    <ul>
+    <li>Store Manager can change price</li>
+    <li style="float: right;">
+    <div class="container-switch">
+    <label class="switch"><input type="checkbox" formControlName="managerPrice" /> <span class="slider"></span>
+    </label>
+    </div>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-2">
+    <div class="form-group">
+    <label>Min. Order Time (Give mins)</label>
+    <input type="text"  class="form-control" formControlName="minOrderTime">
+    </div>
+    </div>
+    <div class="col-md-3">
+    <div class="form-group">
+    <label>Order Processing Time</label>
+    <input type="text"  class="form-control" formControlName="orderProcessing">
+    </div>
+    </div>
+    <div class="col-md-3">
+    <div class="form-group">
+    <label>Assign to store</label><br>
+    <select formControlName="storeId">
+    <option [selected]="true" value="">None</option>
+    <option *ngFor="let item of storeList;let i = index" value="{{item.id}}" >{{item.storeName}}</option>
+    </select>
+    </div>
+    </div>
+    <div class="col-md-4">
+    <div class="form-group">
+    <ul>
+    <li>Coming Soon Status</li>
+    <li style="float: right;">
+    <div class="container-switch">
+    <label class="switch"><input type="checkbox" formControlName="isComingSoon" />  <span class="slider"></span>
+    </label>
+    </div>
+    </li>
+
+    <li>Sub-sub category</li>
+    <li style="float: right;">
+    <div class="container-switch">
+    <label class="switch"><input type="checkbox" formControlName="isSubcate" />  <span class="slider"></span>
+    </label>
+    </div>
+    </li>
+
+    </ul>
+    <div>
+    <button class="save_btn">Save</button>	
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    </form>

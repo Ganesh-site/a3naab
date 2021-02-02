@@ -1,0 +1,17 @@
+.modal-content{
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.image-upload>input {
+    display: none;
+  }
+  .upload-img{
+    width: 80px;
+    height: 80px;
+    cursor: pointer
+  } 
+
+  .driv_img img {
+    width: 63px !important;
+  }

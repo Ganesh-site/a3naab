@@ -1,0 +1,337 @@
+<div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="content">
+    <!-- uiView:  -->
+    <div ui-view="" class="ng-scope">
+    <section class="progress_bar_sec">
+       <div class="container-fluid">
+          <div class="row">
+             <div class="col-md-9">
+                <ul class="prog_bar">
+                   <li [ngClass] ="{'current': orderProgress === 'PLACED' || orderProgress === 'ACCEPTSTORE' }" >Order Placed</li>
+                   <li [ngClass] ="{'current': orderProgress === 'ACCEPTSTORE'}">Accepted by Stores</li>
+                   <li [ngClass] ="{'current': orderProgress === 'CANCELLED'}">Callcelled by User</li>
+                   <li>Assign Driver</li>
+                   <!-- <li class="yellow">Assign Driver</li> -->
+                   <li >Packed by Store</li>
+                   <li>Picked by Driver</li>
+                   <li>Driver On Way</li>
+                   <li>Delivered</li>
+                </ul>
+             </div>
+             <div class="col-md-3">
+                <ul class="invo_btn">
+                   <li *ngIf = " orderStatus === 'PENDING' " ><button (click)="updateOrderStatus('ACCEPTED')" class="save_invo_btn">Accept Order</button></li>
+                   <li *ngIf = " orderStatus === 'ACCEPTED' "><button (click)="updateOrderStatus('REJECTED')" class="save_invo_btn">Cancel Order</button></li>
+                </ul>
+             </div>
+          </div>
+       </div>
+    </section>
+    <section class="custom_head">
+       <div class="container-fluid">
+          <div class="card">
+             <div class="card-content">
+                <div class="row">
+                   <div class="col-md-8">
+                      <div class="above_ord_det">
+                         <ul class="plus_cc">
+                            <li class="box_cc"><span class="light_color">Order Placed :</span> {{orderOn}}</li>
+                            <li class="box_cc"><span class="light_color">Delivery By :</span> {{deliveryDate}}</li>
+                         </ul>
+                      </div>
+                   </div>
+                   <div class="col-md-4">
+                      <div class="above_ord_det">
+                         <!-- <ul class="plus_cc_right">
+                            <li class="plus_ico"><a href=""><i class="fa fa-plus"></i>Add Item</a></li>
+                            <li class="max_ico"><img src="assets/img/maxi_icon.svg" width="20px" height="20px"></li>
+                         </ul> -->
+                      </div>
+                   </div>
+                </div>
+                <div class="suppor_li_table">
+                   <div class="material-datatables">
+                      <div class="table-responsive">
+                         <table datatable="ng" class="table table-bordered table-striped table_datatable" id="customerTable">
+                            <thead>
+                               <tr>
+                                  <!-- <th>Store</th> -->
+                                  <th>Product</th>
+                                  <th>Category</th>
+                                  <th>SubCategory</th>
+                                  <th>Sub-SubCategory</th>
+                                  <!-- <th>Variant</th> -->
+                                  <th class="text-center">Instructions</th>
+                                  <!-- <th class="text-center">Status</th> -->
+                                  <th class="text-center">Quantity</th>
+                                  <th>Price / unit</th>
+                                  <th>Amount</th>
+                                  <th></th>
+                               </tr>
+                            </thead>
+                            <tbody *ngFor="let item of orderDetails;let i = index" >
+                               <tr>
+                                  <td>{{item.storeName}}</td>
+                                 </tr>
+                               <tr *ngFor="let prod of item.products">
+                                  <!-- <td>
+                                     My Super Mart<br>
+                                     <span class="red_color">#Store_ID</span><br>
+                                     <ul class="pho_ic_img">
+                                        <li><img src="assets/img/phone_icon.svg"></li>
+                                        <li><img src="assets/img/file.svg"></li>
+                                     </ul>
+                                  </td> -->
+                                  <td>
+                                     <div class="ord_img">
+                                        <img src="{{prod.productImage}}">
+                                     </div>
+                                     <div class="ord_sec">
+                                        <p>{{prod.productName}}</p>
+                                        <p class="red_color">{{prod.productCode}}</p>
+                                     </div>
+                                  </td>
+                                  <td>{{prod.categoryName}}</td>
+                                  <td>{{prod.productCategoryName}}</td>
+                                  <td>{{prod.productSubCategoryName}}</td>
+                                  <!-- <td>250ml</td> -->
+                                  <td class="text-center">{{prod.orderInstructions}}</td>
+                                  <!-- <td class="text-center">
+                                     <ul class="status_icon">
+                                        <li><img src="assets/img/packed.svg"></li>
+                                        <li><img src="assets/img/picked_by_driver.svg"></li>
+                                     </ul>
+                                  </td> -->
+                                  <td class="text-center">x{{prod.quantity}}</td>
+                                  <td>SAR {{prod.singlePrice}}</td>
+                                  <td>SAR {{prod.supplyPrice}}</td>
+                                  <td> <a style="cursor: pointer;" (click)="removeOrderItems(prod)"> <img src="assets/img/delete_icon.svg" style="width: 18px;height: 18px;"> </a></td>
+                               </tr>
+                               <!-- <tr>
+                                  <td></td>
+                                  <td>
+                                     <div class="ord_img">
+                                        <img src="assets/img/lays.png">
+                                     </div>
+                                     <div class="ord_sec">
+                                        <p>Lays Chips</p>
+                                        <p class="red_color">#Product_ID</p>
+                                     </div>
+                                  </td>
+                                  <td>Super Market</td>
+                                  <td>Snacks</td>
+                                  <td>Snacks</td>
+                                  <td>23 g</td>
+                                  <td class="text-center">- -</td>
+                                  <td class="text-center">
+                                     <ul class="status_icon">
+                                        <li><img src="assets/img/packed.svg"></li>
+                                        <li><img src="assets/img/picked_by_driver.svg"></li>
+                                     </ul>
+                                  </td>
+                                  <td class="text-center">x3</td>
+                                  <td>SAR 02.00</td>
+                                  <td>SAR 06.00</td>
+                                  <td><img src="assets/img/delete_icon.svg" style="width: 18px;height: 18px;"></td>
+                               </tr>
+                               <tr>
+                                  <td></td>
+                                  <td>
+                                     <div class="ord_img">
+                                        <img src="assets/img/lays1.png">
+                                     </div>
+                                     <div class="ord_sec">
+                                        <p>Pepsi Can</p>
+                                        <p class="red_color">#Product_ID</p>
+                                     </div>
+                                  </td>
+                                  <td>Super Market</td>
+                                  <td>Beverages</td>
+                                  <td>Cold Drink</td>
+                                  <td>250ml</td>
+                                  <td class="text-center">- -</td>
+                                  <td class="text-center">
+                                     <ul class="status_icon">
+                                        <li><img src="assets/img/unpacked.svg"></li>
+                                        <li><img src="assets/img/picked_by_driver.svg"></li>
+                                     </ul>
+                                  </td>
+                                  <td class="text-center">x3</td>
+                                  <td>SAR 02.00</td>
+                                  <td>SAR 06.00</td>
+                                  <td><img src="assets/img/delete_icon.svg" style="width: 18px;height: 18px;"></td>
+                               </tr> -->
+                            </tbody>
+                            <!-- <tbody>
+                               <tr>
+                                  <td>
+                                     Mega Meat Shop<br>
+                                     <span class="red_color">#Store_ID</span><br>
+                                     <ul class="pho_ic_img">
+                                        <li><img src="assets/img/phone_icon.svg"></li>
+                                        <li><img src="assets/img/file.svg"></li>
+                                     </ul>
+                                  </td>
+                                  <td>
+                                     <div class="ord_img">
+                                        <img src="assets/img/chicken_breast.png">
+                                     </div>
+                                     <div class="ord_sec">
+                                        <p>Chicken Breast</p>
+                                        <p class="red_color">#Product_ID</p>
+                                     </div>
+                                  </td>
+                                  <td>Meat Store</td>
+                                  <td>Meat</td>
+                                  <td>Meat</td>
+                                  <td>1Kg</td>
+                                  <td class="text-center">Wash Before Packing</td>
+                                  <td class="text-center">
+                                     <ul class="status_icon">
+                                        <li><img src="assets/img/unpacked.svg"></li>
+                                        <li><img src="assets/img/not_picked_by_driver.svg"></li>
+                                     </ul>
+                                  </td>
+                                  <td class="text-center">x3</td>
+                                  <td>SAR 20.90</td>
+                                  <td>SAR 62.70</td>
+                                  <td><img src="assets/img/delete_icon.svg" style="width: 18px;height: 18px;"></td>
+                               </tr>
+                               <tr>
+                                  <td></td>
+                                  <td>
+                                     <div class="ord_img">
+                                        <img src="assets/img/lamb.png">
+                                     </div>
+                                     <div class="ord_sec">
+                                        <p>Lamb</p>
+                                        <p class="red_color">#Product_ID</p>
+                                     </div>
+                                  </td>
+                                  <td>Meat Store</td>
+                                  <td>Meat</td>
+                                  <td>Meat</td>
+                                  <td>1Kg</td>
+                                  <td class="text-center">Wash Before Packing</td>
+                                  <td class="text-center">
+                                     <ul class="status_icon">
+                                        <li><img src="assets/img/unpacked.svg"></li>
+                                        <li><img src="assets/img/picked_by_driver.svg"></li>
+                                     </ul>
+                                  </td>
+                                  <td class="text-center">x3</td>
+                                  <td>SAR 37.70</td>
+                                  <td>SAR 113.10</td>
+                                  <td><img src="assets/img/delete_icon.svg" style="width: 18px;height: 18px;"></td>
+                               </tr>
+                            </tbody> -->
+                         </table>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+    <section class="ord_descrip">
+    <div class="container-fluid">
+       <div class="row">
+          <div class="col-md-3">
+             <div class="card">
+                <div class="card-content">
+                   <ul>
+                      <!-- <li><img src="assets/img/user.png"></li> -->
+                      <li class="ord_det"><span class="usr_name">{{firstName}} {{lastName}}</span><br><span class="red_color">#Cu0020</span></li>
+                   </ul>
+                   <h5>Delivery Address</h5>
+                   <p>{{landmark}}, {{addressPinDetails}}</p>
+                   <h5>Driver's Note</h5>
+                   <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
+                   <h5>Phone Number</h5>
+                   <p>{{mobileNumber}}</p>
+                </div>
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="card">
+                <div class="card-content">
+                   <h5>Delivery Address</h5>
+                   <p>{{landmark}}, {{addressPinDetails}}</p>
+                   <h5>For unavailable item</h5>
+                   <p>Delete the item</p>
+                   <ul class="prod_tot">
+                      <li class="light_color">Product Total</li>
+                      <li class="righ_cont">SAR {{grandTotal}}</li>
+                   </ul>
+                   <ul>
+                      <li class="light_color">Tax 1</li>
+                      <li class="righ_cont">SAR 0</li>
+                   </ul>
+                   <ul>
+                      <li class="light_color">Tax 2</li>
+                      <li class="righ_cont">SAR 0</li>
+                   </ul>
+                   <ul>
+                      <li class="light_color">Delivery Charges</li>
+                      <li class="righ_cont">Free</li>
+                   </ul>
+                   <ul>
+                      <li class="light_color">Total Bill</li>
+                      <li class="righ_cont">SAR {{grandTotal}}</li>
+                   </ul>
+                   <!-- <p *ngIf = "paytype === 'card'" class="text-center online_btn">Paid Online</p> -->
+
+                  <!-- <p *ngIf = "paytype === 'cash'" class="text-center cod_btn">C.O.D</p> -->
+                   <p  *ngIf = " payType === 'card' " class="text-center paid_btn">Online Paid</p> 
+
+                   <p  *ngIf = " payType === 'cash' " class="text-center cod_btn">C.O.D</p> 
+
+                </div>
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="card">
+                <div class="card-content">
+                   <ul>
+                      <li class="ord_driv"><img src="assets/img/driver1.png"></li>
+                      <li class="ord_det"><span class="red_color">#Dr0020</span><br>
+                         <span><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span><br>
+                         <span class="light_color">Success Rate : 85%</span>
+                      </li>
+                   </ul>
+                   <ul>
+                      <li>Assignment</li>
+                      <li class="righ_cont"><span class="red_color">#Assg_ID</span></li>
+                   </ul>
+                   <p class="driv_desc">Driver is picking up the item from Store 2 ( #store_id )</p>
+                   <img src="assets/img/map_screen.png">
+                </div>
+             </div>
+          </div>
+          <div class="col-md-3">
+             <div class="card">
+                <div class="card-content">
+                   <ul *ngFor="let item of orderDetails;let i = index">
+                      <li class="ord_driv"><img src="{{item.storeImage}}"></li>
+                      <li class="ord_det"><span>{{item.storeName}}</span><br>
+                         <span class="red_color">{{item.storeID}}</span><br>
+                         <span class="light_color">Status &nbsp; <b class="green">{{item.storeStatus}}</b></span>
+                      </li>
+                   </ul>
+                   <!-- <ul>
+                      <li class="ord_driv"><img src="assets/img/store2.png"></li>
+                      <li class="ord_det"><span>#Dr0020</span><br>
+                         <span class="red_color">#Dr0020</span><br>
+                         <span class="light_color">Status &nbsp; <b class="orange">Rejected</b></span>
+                      </li>
+                   </ul>
+                   <ul class="rej_bbn">
+                      <li><button type="button" class="float_cash_btn">Reject Reason</button></li>
+                      <li><button type="button" class="float_cash_btn">Assign Store</button></li>
+                   </ul> -->
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>

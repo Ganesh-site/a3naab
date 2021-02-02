@@ -1,0 +1,646 @@
+<div class="main-panel">
+<app-navbar></app-navbar>
+<div class="content">
+<!-- uiView:  -->
+<div ui-view="" class="ng-scope">
+<section class="custom_head">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-4">
+<ul>
+<li style="padding-left: 10px;">
+Show Off Duty Drivers &nbsp;&nbsp; 
+<label class="switch">
+<input type="checkbox" checked (change)="onchangeDriver($event)">
+<!-- <input type="checkbox"> -->
+<span class="slider"></span>
+</label>
+</li>
+<li>
+<select>
+<option>Driver Status</option>
+</select>
+</li>
+</ul>
+</div>
+<div class="col-md-8 right_cont">
+<ul>
+<li>
+<p>Total Floating Cash : <span>SAR 215.00</span></p>
+</li>
+<li>
+<button type="button" class="float_cash_btn" data-toggle="modal" data-target="#float_cash_btn">Submit Floating Cash</button>
+</li>
+<li>
+<button type="button" class="float_cash_btn" data-toggle="modal" (click)="addNewDriver()" data-target="#add_driv_btn">Add Driver</button>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="custom_head">
+<div class="container-fluid">
+<div class="card">
+<div class="card-content">
+<div class="row">
+<div class="col-md-12">
+<div class="row">
+<div class="col-md-12">
+<agm-map 
+[latitude]="lat"
+[longitude]="lng"
+[zoom]="zoom"
+[disableDefaultUI]="false"
+[zoomControl]="false">
+<agm-marker 
+*ngFor="let m of markers; let i = index"
+(markerClick)="clickedMarker(infowindow)"
+[latitude]="m.latitude"
+[longitude]="m.longitude"
+>
+<agm-info-window #infowindow>
+<p><strong>Name: </strong> {{m.firstName}}</p>
+</agm-info-window>
+</agm-marker>
+</agm-map>
+<!-- <div id="map"></div> -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="driver_sec">
+<div class="container-fluid">
+
+<div class="col-md-3" *ngFor="let item of driverList;let i = index">
+<div class="card">
+<div class="prof_sec">
+<div class="driv_img">
+<img src="{{item.profilePic}}">
+</div>
+<div class="driv_det">
+<p>{{item.firstName}} {{item.lastName}}</p>
+<p class="driv_id">{{item.drId}}</p>
+<p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></p>
+</div>
+<div class="prof_det">
+<p>Success Rate :</p>
+<p>Ongoing Assignments :</p>
+<p>Avg. Delivery Time :</p>
+<p>Floating Cash :</p>
+<p style="margin-bottom: 10px;">Total Orders Delivered</p>
+</div>
+<div class="prof_det1">
+<p>0%</p>
+<p>0</p>
+<p>0 Hrs</p>
+<p>SAR 0</p>
+<p>0</p>
+</div>
+<div class="driv_btn_sec">
+<div class="row">
+<div class="col-md-12">
+<div class="map_div_sec">
+<div class="map_div_dd">
+<p class="text-center">Spot on Map</p>
+</div>
+<div class="map_div_dd1">
+<a (click)="viewProfile(item)" class="text-center">View Profile</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- <div class="col-md-3">
+<div class="card">
+<div class="prof_sec">
+<div class="driv_img">
+<img src="assets/img/driver1.png">
+</div>
+<div class="driv_det">
+<p>Driver Name</p>
+<p class="driv_id">#Dr0020</p>
+<p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></p>
+</div>
+<div class="prof_det">
+<p>Success Rate :</p>
+<p>Ongoing Assignments :</p>
+<p>Avg. Delivery Time :</p>
+<p>Floating Cash :</p>
+<p style="margin-bottom: 10px;">Total Orders Delivered</p>
+</div>
+<div class="prof_det1">
+<p>68%</p>
+<p>03</p>
+<p>02 Hrs</p>
+<p>SAR 1,245.25</p>
+<p>1,523</p>
+</div>
+<div class="driv_btn_sec">
+<div class="row">
+<div class="col-md-12">
+<div class="map_div_sec">
+<div class="map_div_dd">
+<p class="text-center">Spot on Map</p>
+</div>
+<div class="map_div_dd1">
+<p class="text-center">View Profile</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3">
+<div class="card">
+<div class="prof_sec">
+<div class="driv_img">
+<img src="assets/img/driver1.png">
+</div>
+<div class="driv_det">
+<p>Driver Name</p>
+<p class="driv_id">#Dr0020</p>
+<p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></p>
+</div>
+<div class="prof_det">
+<p>Success Rate :</p>
+<p>Ongoing Assignments :</p>
+<p>Avg. Delivery Time :</p>
+<p>Floating Cash :</p>
+<p style="margin-bottom: 10px;">Total Orders Delivered</p>
+</div>
+<div class="prof_det1">
+<p>68%</p>
+<p>03</p>
+<p>02 Hrs</p>
+<p>SAR 1,245.25</p>
+<p>1,523</p>
+</div>
+<div class="driv_btn_sec">
+<div class="row">
+<div class="col-md-12">
+<div class="map_div_sec">
+<div class="map_div_dd">
+<p class="text-center">Spot on Map</p>
+</div>
+<div class="map_div_dd1">
+<p class="text-center">View Profile</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3">
+<div class="card">
+<div class="prof_sec">
+<div class="driv_img">
+<img src="assets/img/driver1.png">
+</div>
+<div class="driv_det">
+<p>Driver Name</p>
+<p class="driv_id">#Dr0020</p>
+<p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></p>
+</div>
+<div class="prof_det">
+<p>Success Rate :</p>
+<p>Ongoing Assignments :</p>
+<p>Avg. Delivery Time :</p>
+<p>Floating Cash :</p>
+<p style="margin-bottom: 10px;">Total Orders Delivered</p>
+</div>
+<div class="prof_det1">
+<p>68%</p>
+<p>03</p>
+<p>02 Hrs</p>
+<p>SAR 1,245.25</p>
+<p>1,523</p>
+</div>
+<div class="driv_btn_sec">
+<div class="row">
+<div class="col-md-12">
+<div class="map_div_sec">
+<div class="map_div_dd">
+<p class="text-center">Spot on Map</p>
+</div>
+<div class="map_div_dd1">
+<p class="text-center">View Profile</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3">
+<div class="card">
+<div class="prof_sec">
+<div class="driv_img">
+<img src="assets/img/driver1.png">
+</div>
+<div class="driv_det">
+<p>Driver Name</p>
+<p class="driv_id">#Dr0020</p>
+<p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></p>
+</div>
+<div class="prof_det">
+<p>Success Rate :</p>
+<p>Ongoing Assignments :</p>
+<p>Avg. Delivery Time :</p>
+<p>Floating Cash :</p>
+<p style="margin-bottom: 10px;">Total Orders Delivered</p>
+</div>
+<div class="prof_det1">
+<p>68%</p>
+<p>03</p>
+<p>02 Hrs</p>
+<p>SAR 1,245.25</p>
+<p>1,523</p>
+</div>
+<div class="driv_btn_sec">
+<div class="row">
+<div class="col-md-12">
+<div class="map_div_sec">
+<div class="map_div_dd">
+<p class="text-center">Spot on Map</p>
+</div>
+<div class="map_div_dd1">
+<p class="text-center">View Profile</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3">
+<div class="card">
+<div class="prof_sec">
+<div class="driv_img">
+<img src="assets/img/driver1.png">
+</div>
+<div class="driv_det">
+<p>Driver Name</p>
+<p class="driv_id">#Dr0020</p>
+<p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></p>
+</div>
+<div class="prof_det">
+<p>Success Rate :</p>
+<p>Ongoing Assignments :</p>
+<p>Avg. Delivery Time :</p>
+<p>Floating Cash :</p>
+<p style="margin-bottom: 10px;">Total Orders Delivered</p>
+</div>
+<div class="prof_det1">
+<p>68%</p>
+<p>03</p>
+<p>02 Hrs</p>
+<p>SAR 1,245.25</p>
+<p>1,523</p>
+</div>
+<div class="driv_btn_sec">
+<div class="row">
+<div class="col-md-12">
+<div class="map_div_sec">
+<div class="map_div_dd">
+<p class="text-center">Spot on Map</p>
+</div>
+<div class="map_div_dd1">
+<p class="text-center">View Profile</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3">
+<div class="card">
+<div class="prof_sec">
+<div class="driv_img">
+<img src="assets/img/driver1.png">
+</div>
+<div class="driv_det">
+<p>Driver Name</p>
+<p class="driv_id">#Dr0020</p>
+<p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></p>
+</div>
+<div class="prof_det">
+<p>Success Rate :</p>
+<p>Ongoing Assignments :</p>
+<p>Avg. Delivery Time :</p>
+<p>Floating Cash :</p>
+<p style="margin-bottom: 10px;">Total Orders Delivered</p>
+</div>
+<div class="prof_det1">
+<p>68%</p>
+<p>03</p>
+<p>02 Hrs</p>
+<p>SAR 1,245.25</p>
+<p>1,523</p>
+</div>
+<div class="driv_btn_sec">
+<div class="row">
+<div class="col-md-12">
+<div class="map_div_sec">
+<div class="map_div_dd">
+<p class="text-center">Spot on Map</p>
+</div>
+<div class="map_div_dd1">
+<p class="text-center">View Profile</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3">
+<div class="card">
+<div class="prof_sec">
+<div class="driv_img">
+<img src="assets/img/driver1.png">
+</div>
+<div class="driv_det">
+<p>Driver Name</p>
+<p class="driv_id">#Dr0020</p>
+<p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></p>
+</div>
+<div class="prof_det">
+<p>Success Rate :</p>
+<p>Ongoing Assignments :</p>
+<p>Avg. Delivery Time :</p>
+<p>Floating Cash :</p>
+<p style="margin-bottom: 10px;">Total Orders Delivered</p>
+</div>
+<div class="prof_det1">
+<p>68%</p>
+<p>03</p>
+<p>02 Hrs</p>
+<p>SAR 1,245.25</p>
+<p>1,523</p>
+</div>
+<div class="driv_btn_sec">
+<div class="row">
+<div class="col-md-12">
+<div class="map_div_sec">
+<div class="map_div_dd">
+<p class="text-center">Spot on Map</p>
+</div>
+<div class="map_div_dd1">
+<p class="text-center">View Profile</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> -->
+</div>
+</section>
+<section class="driver_modal">
+<div class="modal right fade" id="float_cash_btn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<!-- <h4 class="modal-title" id="myModalLabel2">Right Sidebar</h4> -->
+</div>
+<div class="modal-body">
+<table class="table table-bordered table-striped table_datatable" id="customerTable">
+<thead>
+<tr>
+<th>Driver ID</th>
+<th>Drivers Name</th>
+<th>Floating Cash</th>
+<th>Payment</th>
+<th>Action</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="red_color">#Driver001</td>
+<td>Hector Quigley</td>
+<td>SAR 200.00</td>
+<td><span class="light_color">Paid :</span> <span>0</span><br>
+<span class="light_color">Pending :</span> <span>200.00</span>
+</td>
+<td><span class="light_color">Enter Amount</span><br><span class="ur_value">SAR 100.00</span></td>
+<td><span class="sub_btn">Submit</span></td>
+</tr>
+<tr>
+<td class="red_color">#Driver001</td>
+<td>Taymullah Pirani</td>
+<td>SAR 200.00</td>
+<td><span class="light_color">Paid :</span> <span>0</span><br>
+<span class="light_color">Pending :</span> <span>200.00</span>
+</td>
+<td><span class="light_color">Enter Amount</span><br><span class="ur_value">SAR 100.00</span></td>
+<td><span class="sub_btn">Submit</span></td>
+</tr>
+<tr>
+<td class="red_color">#Driver001</td>
+<td>Alishba Suleiman</td>
+<td>SAR 200.00</td>
+<td><span class="green">Complete</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td class="red_color">#Driver001</td>
+<td>Alzahra Nassif</td>
+<td>SAR 200.00</td>
+<td><span class="green">Complete</span></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- modal-content -->
+</div>
+<!-- modal-dialog -->
+</div>
+</section>
+<section class="add_driv_sec">
+<div class="modal right fade" id="add_driv_btn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<div class="row">
+<div class="col-md-7">
+<ul>
+<li><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></li>
+
+<li class="stat_btn text-center" style="padding-left: 10px;" *ngIf = "isEdit">
+Status &nbsp;&nbsp; 
+<label class="switch">
+<input  *ngIf="driverActive == 1"  checked type="checkbox" (change)="ChangeStatus($event.target.checked, driverActive)"/>
+<input  *ngIf="driverActive == 0" unchecked type="checkbox" (change)="ChangeStatus($event.target.checked, driverActive)" />    <span class="slider"></span>
+</label>
+</li>
+
+<li class="stat_btn text-center" style="padding-left: 10px;" *ngIf = "!isEdit">
+Status &nbsp;&nbsp; 
+<label class="switch">
+<input   checked type="checkbox" (change)="ChangeStatus($event.target.checked, 1)" />    <span class="slider"></span>
+</label>
+</li>
+</ul>
+</div>
+<!-- <div class="col-md-5">
+<ul class="right_side_icon">
+<li><img src="assets/img/edit_icon.svg" onmouseover="this.src='assets/img/edit_hover_icon.svg'" onmouseout="this.src='assets/img/edit_icon.svg'"></li>
+<li><img src="assets/img/delete_icon.svg" onmouseover="this.src='assets/img/delete_hover_icon.svg'" onmouseout="this.src='assets/img/delete_icon.svg'"></li>
+</ul>
+</div> -->
+</div>
+</div>
+<div class="modal-body">
+<form [formGroup]="addDriver" (ngSubmit)="onSubmit()">
+<div class="driv_pp">
+<div class="image-upload text-center">
+<label for="file-input">
+<!-- Subcategory Image -->
+<img class="upload-img" *ngIf="!imagePreview"  src="assets/img/driver1.png"/>
+<img class="upload-img" *ngIf="imagePreview" src="{{imagePreview}}"/>
+</label>
+<input formControlName="profilePic" id="file-input" type="file" (change)="uploadImageFile($event)" />
+</div>
+<!-- <img src="assets/img/driver1.png"> -->
+</div>
+<div class="driv_ppd">
+<p class="red_color">#Dr0020</p>
+<p><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></p>
+<div class="assing_sec">
+<p class="light_color">Total Assignment</p>
+<p class="light_color">Success Rate</p>
+</div>
+<div class="succ_rate">
+<p>0</p>
+<p>0%</p>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<label>First Name</label>
+<input type="text" formControlName="firstName" class="form-control" placeholder="First Name">
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Last Name</label>
+<input type="text" formControlName="lastName" class="form-control" placeholder="Last Name">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label>Email Address</label>
+<input type="email" formControlName="email" class="form-control" placeholder="Eamil">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label>Phone Number</label>
+<input type="number" formControlName="mobileNumber" class="form-control" placeholder="Mobile Number">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label><b>Gender</b></label> <br>
+<div class="form-check-inline">
+<label class="form-check-label" for="gender1">
+<input type="radio" class="form-check-input" id="gender1" formControlName="gender" value="Male" checked>Male
+</label>
+</div>
+
+<div class="form-check-inline">
+<label class="form-check-label" for="gender2">
+<input type="radio" class="form-check-input" id="gender2" formControlName="gender" value="Female">Female
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<label>Date of Birth</label>
+<input type="text" formControlName="dob" bsDatepicker  placeholder="DOB" [(bsValue)]="bsValue" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" readonly   [outsideClick] = "true"  class="form-control datepicker">
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>ID Number</label>
+<input type="text" formControlName="IDNumber" class="form-control" placeholder="ID Number">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="doc_driv">
+<p class="doc">Documents</p>
+<div class="dri_lic_sec">
+<p>Driver’s License</p>
+<p>AQamah</p>
+<p>Gov Doc 1</p>
+<p>Gov Doc 2</p>
+</div>
+<div class="dri_uplo_sec">
+<p class="green">Uploaded</p>
+<p>Upload</p>
+<p class="green">Uploaded</p>
+<p class="green">Uploaded</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="doc_driv">
+<!-- <p class="doc">Information</p>
+<div class="dri_lic_sec">
+<p>Signup Date</p>
+<p>Last Login</p>
+</div>
+<div class="dri_uplo_sec">
+<p>7/6/20 - 12:43 pm</p>
+<p>7/6/20 - 12:43 pm</p>
+</div> -->
+<p class="text-center"><button class="add_car_btn">Submit</button></p>
+
+</div>
+</div>
+<!-- <div class="add_car_sec">
+<p class="text-center"><button class="add_car_btn">Add Driver</button></p>
+</div> -->
+</form>
+</div>
+</div>
+<!-- modal-content -->
+</div>
+<!-- modal-dialog -->
+</div>

@@ -1,0 +1,16 @@
+.container-switch-table{
+    position: absolute;
+}
+
+.image-upload>input {
+    display: none;
+  }
+  .upload-img{
+    /* width: 121px;
+    height: 121px; */
+    cursor: pointer
+  } 
+
+  .modal-body{
+    overflow-x: hidden !important;
+  }

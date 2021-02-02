@@ -1,0 +1,326 @@
+<div class="main-panel">
+<app-navbar></app-navbar>
+
+<div class="content">
+<!-- uiView:  -->
+<div ui-view="" class="ng-scope">
+<section class="custom_head">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-4">
+<ul>
+<li style="padding-left: 10px;">
+Show only active offers &nbsp;&nbsp; 
+<label class="switch">
+<input type="checkbox" [(ngModel)]="status" (change) = "onchange()">
+<span class="slider"></span>
+</label>
+</li>
+</ul>
+</div>
+<div class="col-md-8 right_cont">
+<ul>
+<li>
+<button type="button" class="add_tick_btn" data-toggle="modal" data-target="#notification_btn">Push Notification</button>
+</li>
+<li>
+<button type="button" class="add_tick_btn" data-toggle="modal" data-target="#add_offer_btn">Add Offer</button>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section class="driver_sec">
+<div class="row">
+<div class="col-md-3 off_tab" *ngFor = "let offers of list_offers; let i = index">
+<div class="card">
+<div class="prof_sec">
+<img src="{{offers.image}}">
+
+<ul class="off_sec">
+
+<li class="off_tit">{{offers.title}}</li>
+<li class="rig_sec">
+<label class="switch">
+<input type="checkbox" [checked] = "offers.status == 'active'" (change)="statclick(offers.id,'status')">
+<span class="slider"></span>
+</label>
+</li>
+</ul>
+
+<ul>
+    <li class="off_tit">
+        {{offers.description}}
+    </li>
+</ul>
+
+<ul>
+<li class="red_color">#{{offers.couponCode}}</li>
+<li class="rig_sec"><i>{{offers.startDate}} - {{offers.endDate}}</i></li>
+</ul>
+
+<ul>
+<li><span class="light_color">Discount :</span> {{offers.discount}}</li>
+<li class="rig_sec"><span class="light_color">Use Count :</span> {{offers.count}}</li>
+</ul>
+
+<div class="driv_btn_sec">
+<div class="row">
+<div class="col-md-12">
+<div class="map_div_sec">
+<div class="map_div_dd">
+<p class="text-center edit_bttn" checked (click)="editoffers(offers)">Edit</p>
+</div>
+<div class="map_div_dd1">
+<p class="text-center" (click)="statclick(offers.id,'delete')">Delete</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+
+<section class="add_offer_sec">
+<div class="modal right fade" id="add_offer_btn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+
+<form [formGroup]="addOffers">
+<div class="modal-header">
+<div class="row">
+<div class="col-md-7">
+<ul>
+<li><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></li>
+
+<li class="stat_btn text-center" style="padding-left: 10px;">
+Status &nbsp;&nbsp;
+<label class="switch">
+<input type="checkbox" formControlName="status">
+<span class="slider"></span>
+</label>
+</li>
+</ul>
+</div>
+<div class="col-md-5">
+<!-- <ul class="right_side_icon">
+<li><img src="assets/img/edit_icon.svg" onmouseover="this.src='assets/img/edit_hover_icon.svg'" onmouseout="this.src='assets/img/
+    _icon.svg'"></li>
+<li><img src="assets/img/delete_icon.svg" onmouseover="this.src='assets/img/delete_hover_icon.svg'" onmouseout="this.src='assets/img/delete_icon.svg'"></li>
+</ul> -->
+</div>
+</div>
+</div>
+
+<div class="modal-body">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-8">
+<img src="assets/img/offers.png">
+
+<div class="trusty_user">
+<label>Make for Trusty User</label>
+<label class="switch">
+<input type="checkbox" formControlName="trustUser">
+<span class="slider"></span>
+</label>
+
+</div>
+</div>
+<div class="col-md-4">
+<p class="red_color of_id">#Offer_ID</p>
+<label class="start">Starts On</label><br>
+<input type="text"  bsDatepicker  placeholder="StartDate" [(bsValue)]="bsValue"  formControlName="startDate" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"  class="form-control datepicker"/>
+<!-- <select>
+<option >12/06/20 - 11 AM</option>
+</select> -->
+<br>
+<label class="end">Ends On</label><br>
+<input type="text"  bsDatepicker  placeholder="EndDate" [(bsValue)]="bsValue1"  formControlName="endDate" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"  class="form-control datepicker"/>
+<!-- <select>
+<option>18/06/20 - 11 AM</option>
+</select> -->
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label>Offer Title</label>
+<input type="text" name="" formControlName="title" class="form-control" placeholder="Trusty User">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label>Offer Description</label>
+<textarea class="form-control" formControlName="description" >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</textarea>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<label>Coupon Code</label>
+<input type="text" name="" class="form-control" placeholder="Sharad" formControlName="couponCode" >
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Discount</label>
+<input type="text" name="" class="form-control" placeholder="100%" formControlName="discount" >
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<label>Min. Order Value</label>
+<input type="text" name="" class="form-control" placeholder="SAR 00.00" formControlName="minimumValue" >
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Max Use Count</label>
+<input type="text" name="" class="form-control" placeholder="125 Users" formControlName="count" > 
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label style="font-size: 16px;"><span  class="red_color">Active On</span></label>
+</div>
+</div>
+</div>
+
+<div class="active_on_sec">
+<ul>
+<li><label>Select Product Category</label><br>
+<select formControlName="offCategoryId" (change)="cateclick(addOffers.value.offCategoryId)">
+<option value="">Select category</option>
+<option *ngFor = "let allcateg of allcategory; let i = index" value="{{allcateg.id}}">{{allcateg.categoryName}}</option>
+</select></li>
+<li><label>Select Product</label><br>
+<select formControlName="offProductId">
+<option value="">Select Product</option>
+<option *ngFor = "let prodcate of productcategory; let i = index" value="{{prodcate.id}}">{{prodcate.productName}}</option>
+</select></li>
+<li><button class="prod_add_btn" (click)="onSubmit()">Add</button></li>
+</ul>
+</div>
+
+<!-- <div class="catea_sec">
+<ul>
+<li class="fir_cat">Category A</li>
+<li>Product c</li>
+<li class="last_cat"><img src="assets/img/delete_icon.svg" onmouseover="this.src='assets/img/delete_hover_icon.svg'" onmouseout="this.src='assets/img/delete_icon.svg'"></li>
+</ul>
+</div> -->
+
+<!-- <div class="catea_sec">
+<ul>
+<li class="fir_cat">Category A</li>
+<li>Product c</li>
+<li class="last_cat"><img src="assets/img/delete_icon.svg" onmouseover="this.src='assets/img/delete_hover_icon.svg'" onmouseout="this.src='assets/img/delete_icon.svg'"></li>
+</ul>
+</div> -->
+
+</div>
+
+</div>
+</form>
+</div><!-- modal-content -->
+</div><!-- modal-dialog -->
+</div>
+</section>
+
+
+<section class="push_notify_sec">
+<div class="modal right fade" id="notification_btn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+
+<div class="modal-header">
+<div class="row">
+<div class="col-md-7">
+<ul>
+<li><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></li>
+
+</ul>
+</div>
+<div class="col-md-5"></div>
+</div>
+</div>
+
+<div class="modal-body">
+
+<form>
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label>Notification Title</label>
+<input type="text" name="" class="form-control" placeholder="Trusty User">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label>Notification Content</label>
+<textarea class="form-control" rows="5">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</textarea>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<label>Select Gender</label><br>
+<select>
+<option>None</option>
+</select>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Select Age Range</label><br>
+<select>
+<option>18 - 25</option>
+</select>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label>Select Location</label><br>
+<select class="locat_sec">
+<option>None</option>
+</select>
+</div>
+</div>
+</div>
+
+<br>
+<p class="text-center"><button class="add_car_btn">Send Push Notification</button></p>
+
+</form>
+</div>
+
+</div>
+
+</div><!-- modal-content -->
+</div><!-- modal-dialog -->
+</section>
